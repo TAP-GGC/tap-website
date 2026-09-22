@@ -2,6 +2,9 @@
 import { z, defineCollection, getCollection, reference } from 'astro:content';
 import { withCtx } from 'vue';
 
+// Import our own collections
+import { getStudentIds } from "../components/astro/StudentIds";
+
 // 2. Define your collection(s)
 const eventCollection = defineCollection({
   type: 'content', // v2.5.0 and later
@@ -20,16 +23,17 @@ const eventCollection = defineCollection({
     desc: z.string().optional().nullable(),
     imageEvent:  image().refine(eventPhotoValidator, eventPhotoValidatorMsg).optional(),
     images: z.array(z.object({
-    src: image().refine((img) => img.width <= 1500, {
-      message: `Image is too large! Convert images to be less than 1500 pixels wide.`,
+    src: image().refine((img) => img.width <= 1500, (img) => ({
+      message: `Image is too large! Convert images to be less than 1500 pixels wide.\n${img.src} is ${img.width}x${img.height}.`,
       path: [ "images" ]
-    }),
+    })),
     alt: z.string() })).optional(),
   }),
 });
-const eventPhotoValidator = (img) => img.width && Math.abs(img.width / img.height - 0.75) < 0.2;
+const photoAspect = (img) => img.width / img.height;
+const eventPhotoValidator = (img) => img.width && Math.abs(photoAspect(img) - 0.75) < 0.2;
 const eventPhotoValidatorMsg = (img) => ({
-  message: `Event photo image must 2x3 portrait aspect ratio!\n${img.src} is ${img.width}x${img.height}.`,
+  message: `Event photo image must be a 2x3 (0.75) portrait aspect ratio but given image ratio is ${Math.round(photoAspect(img) * 100) / 100}, which is more than 20% different!\n${img.src} is ${img.width}x${img.height}.`,
   path: [ "imageEvent" ]
 });
 
@@ -153,9 +157,10 @@ const awardCollection = defineCollection({
     events: z.array(z.string()).optional(),
     students: z.array(z.string().refine(
       async (studentId) =>{
-        const students = await getCollection('students');
+        //const students = await getCollection('students');
+        const students = await getStudentIds();        
 
-        return students.some(student => student.data.id == studentId)
+        return studentId in students;
       },
       (studentId) => ({message: `Student '${studentId}' not found.`})
     )).optional(), /* do a refine check like in projects */

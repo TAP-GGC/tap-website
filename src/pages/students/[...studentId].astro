@@ -13,11 +13,11 @@ import { getCollection } from 'astro:content';
 import Crumbs from "../../components/Crumbs.vue";
 import projectIds from '../../components/astro/ProjectIds';
 import ProjectCard from '../../components/ProjectCard.vue';
-import studentIds  from '../../components/astro/StudentIds';
+import { getStudentIds }  from '../../components/astro/StudentIds';
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
-  // const students = await getCollection('students');
+  const studentIds = await getStudentIds();
   // add collection calls for projects 
   //project pages for student (a script that replaces space in names with '-')
   return Object.keys(studentIds).map(studentId => ({

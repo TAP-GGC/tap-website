@@ -23,7 +23,7 @@ import { getCollection } from 'astro:content';
 import Crumbs from "../components/Crumbs.vue"
 import StudentSearch from '../components/StudentSearch.vue';
 import TAPDefaultLayout from "../layouts/default.astro";
-import studentIds from '../components/astro/StudentIds';
+import { getStudentIds } from '../components/astro/StudentIds';
 
 // export async function getStaticPaths() {
 //   const students = await getCollection('students');  
@@ -52,7 +52,7 @@ import studentIds from '../components/astro/StudentIds';
 // }
 
 // read to pass to ProjectSearch
-const students = Object.values(studentIds);
+const students = Object.values(await getStudentIds());
 
 // 2. For your template, you can get the entry directly from the prop
 

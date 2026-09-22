@@ -1,7 +1,9 @@
 import facultyIds from "./FacultyIds";
-import studentIds from "./StudentIds";
+import { getStudentIds } from "./StudentIds";
 
-export function formatIDtoName(id) {
+export async function formatIDtoName(id) {
+  const studentIds = await getStudentIds();
+
   if (id in studentIds){
     return studentIds[id].data.name;
 

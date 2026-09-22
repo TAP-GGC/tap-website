@@ -28,7 +28,7 @@ import ProjectCard from '../../components/ProjectCard.vue';
 import FacultyCard from '../../components/FacultyCard.vue';
 import facultyIds from '../../components/astro/FacultyIds';
 //students
-import studentIds from '../../components/astro/StudentIds';
+import { getStudentIds } from '../../components/astro/StudentIds';
 import StudentCard from '../../components/StudentCard.vue';
 
 // 1. Generate a new path for every collection entry
@@ -43,7 +43,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { paperID } = Astro.params;
 const { Content } = await entry.render();
-   
+const studentIds = await getStudentIds();
 
 //BreadCrumb variables
 const publicationName = entry.data.title;

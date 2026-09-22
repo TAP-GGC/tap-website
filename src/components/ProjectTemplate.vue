@@ -8,9 +8,11 @@ import { Input, Card, Select, Tag } from "agnostic-vue";
 
 // load blog content: news, etc.
 import { getCollection } from 'astro:content';
-import studentIds from "./astro/StudentIds";
+import { getStudentIds } from "./astro/StudentIds";
 import facultyIds from "./astro/FacultyIds";
+
 const projects = await getCollection('projects');  //list of projects
+const studentIds = await getStudentIds();
 
 function createOptions(projects, x) {
     let optionSet = new Set();

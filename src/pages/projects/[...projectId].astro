@@ -76,10 +76,10 @@ const showIframe = project.data.videoAd ? true : false; // Check if videoAd exis
 
 // Returns the display name for a given ID.
 // If the name exists in the corresponding collection (students or instructors), use it; otherwise, format the ID to a readable name.
-function getNameFromID(id, type = 'student') {
+async function getNameFromID(id, type = 'student') {
 	const collection = type === 'student' ? studentIds : facultyIds;
 	const match = Object.values(collection).find(entry => entry?.data?.id === id);
-	return match?.data?.name || formatIDtoName(id);
+	return match?.data?.name || await formatIDtoName(id);
 }
 
 
@@ -165,12 +165,14 @@ import VideoAd from '../../components/astro/VideoAd.astro';
 import Gallery from '../../components/astro/Gallery.astro';
 import VideoCarousel from '../../components/vue/VideoCarousel.vue';
 import Students from '../students.astro';
-import studentIds from '../../components/astro/StudentIds';
+import { getStudentIds } from '../../components/astro/StudentIds';
 import facultyIds from '../../components/astro/FacultyIds';
 import { formatIDtoName } from '../../components/astro/formatNames';
 import TechCard from '../../components/TechCard.vue';
 import ProjectCard from '../../components/ProjectCard.vue';
 import projectIds from '../../components/astro/ProjectIds';
+
+const studentIds = await getStudentIds();
 
 // Logos
 let imageLogoLight = project.data.imageLogoLight?.src;
