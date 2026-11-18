@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import RevealLayout from '../../layouts/reveal.astro';
+
+export async function getStaticPaths() {
+  const decks = await getCollection('slides');
+  return decks.map((deck) => ({
+    params: { slidesId: deck.data.id },
+    props: { deck },
+  }));
+}
+
+const { deck } = Astro.props;
+const { slidesId } = Astro.params;
+---
+
+<RevealLayout title={deck.data.title} description={deck.data.description} markdown={deck.body} />

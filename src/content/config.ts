@@ -210,6 +210,24 @@ const papersCollection = defineCollection({
   })
 });
 
+const slidesCollection = defineCollection({
+  type: 'content',
+  schema: ({ image }) => z.object({
+    title: z.string().optional(),
+    id: z.string(),
+    year: z.number(),
+    postDate: z.date(),
+    events: z.array(z.string()).optional(),
+    awards: z.array(z.string()).optional(),
+    students: z.array(z.string()),
+    instructors: z.array(z.string()),
+    projects: z.array(z.string()),
+    image: image().refine((img) => img.width <= 150, {
+      message: "Image too large! Convert images to be less than 150 pixels wide.",
+    }).optional(),
+    abstract: z.string().optional()
+  })
+});
 
 // 3. Export a single `collections` object to register your collection(s)
 //    This key should match your collection directory name in "src/content"
@@ -220,5 +238,6 @@ export const collections = {
   'instructors': facultyCollection,
   'technologies': technologyCollection,
   'awards': awardCollection,
-  'publications' : papersCollection
+  'publications' : papersCollection,
+  'slides' : slidesCollection
 };
