@@ -8,88 +8,167 @@ description: Lightweight and inexpensive interactive programming widgets for pro
 postDate: 2026-11-14
 projects: []
 ---
-### Lightweight and inexpensive interactive programming widgets for providing authentic coding assessment inside your LMS
+![](/images/tap-logo-dark.png) <!-- .element: height="100px" style="float: left;" -->
+![](/logos/ggc-logo-dark.png) <!-- .element: height="100px" style="float: right;" -->
 
-Cengiz Gunay, Georgia Gwinnett College
+### An Online Repository of <br>Technology Outreach Projects
 
-_2026 Annual CCSC:Southeastern Conference at East Tennessee State University_
+Cengiz Gunay, Thanh Tran, Kelechi Ariwodo, Trung Dao, Anca Doloc-Mihu
+            
+Department of Information Technology <br>
+School of Science and Technology <br>
+Georgia Gwinnett College
 
-October 23, 2026
----
-![](/src/content/slides/sigcite2026-tapwebsite/outreach_repository_architecture.svg) <!-- .element: height="700px" -->
-## Teaching programming<br> in the age of AI chatbots
+_The 27th ACM Annual Conference on Cybersecurity and Information Technology Education (ACM SIGCITE 2026)_
 
-- Students unmotivated
-- Tempting to ask chatbot
-- Easy to cheat
+_University of North Carolina Wilmington_
 
-Solutions:
-- Back to pencil and paper?
----
-## Do we still need to teach programming?
-
-Computational and algorithmic thinking is still a _fundamental skill_.
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-Can't _validate_ AI solutions without knowing programming fundamentals.
-<!-- .element: class="fragment" data-fragment-index="2" -->
-
-But how do we assess _authenticity_?
-<!-- .element: class="fragment" data-fragment-index="3" -->
+November 13, 2026
 
 ---
-## Assessing authentic programming
+## Why an Outreach Repository?
 
-- IDEs are infused with AI tools
-- Online tools and websites offer chat boxes
-- Back to pencil and paper?
+- Hands-on activities help introduce technology concepts.
+- Service learning course under Technology Ambassadors Program (TAP).
+- Students develop new outreach projects every semester.
+- Existing projects represent a valuable educational resource for K-12 and college.
+
+Note:
+Ask the audience what happens to student-created
+teaching materials after a semester ends.
+
 ---
-## Typical programming question
 
-What should be in the blank for program to output `1`?
-```python
-a = ___
-if a > 0:
-  a += 1
-print(a)
-```
+## The Problem
 
-Does this help?
-<!-- .element: class="fragment" data-fragment-index="1" -->
-<iframe src="https://brython.info/tests/editor.html?lang=en&code=" width="1200px" height="400px"></iframe>
-<!-- .element: class="fragment" data-fragment-index="1" -->
+- Materials stored in private LMS (BrightSpace D2L).
+- Distributed across courses and instructors.
+- Not publicly accessible by K-12 educators.
+- Difficult to discover and reuse previous projects.
+
 ---
-## Plain widgets in programming assessments
 
-- Insert `<iframe/>` elements in LMS.
-- Customizable started code
-- Works in LockDown Browser (by whitelisting source host)
-- No ads, no AI, no backend.
+## Related Work
 
-_Really, no backend???_
-<!-- .element: class="fragment" data-fragment-index="1" -->
+- [CS Unplugged](https://csunplugged.org/en/) - offline activities for teaching computer science concepts.
+- [BPCnet.org](https://bpcnet.org/) - repository of outreach activities for broadening participation in computing (discontinued).
+- [CSforAll](https://csforall.org/) - resources for expanding computer science education.
+- [Code.org](https://code.org/) - free curriculum and tools that help teachers build digital fluency.
+- And other smaller projects and repositories.
+
 ---
-## How can you run programming widgets without a backend?
 
-Enter _WebAssembly_:
-> Code in many languages can be compiled into WASM, to be executed efficient inside the browser sandbox.
+## Our Solution
 
-Still need a place to host files (e.g. Github Pages), but no need to rent and manage a server.
+A public repository of outreach projects: [https://tapggc.org](https://tapggc.org)
+
+<iframe src="https://tapggc.org" width="100%" height="600px"></iframe>
+
 ---
-## WASM Demo
 
-<iframe width="1200px" height="600px" src="https://silentspacemarine.com/"></iframe>
+## Sustainable Architecture
+
+GitHub → Astro + Vue.js → GitHub Pages
+
+- Markdown and MDX content
+- Static site generation
+- Dynamic components
+- Automated deployment
+
 ---
-## Example authentic programming assignment widgets
 
-- Python
-- SQL
-- Bash
-- Javascript
-- And more...
+![](outreach_repository_architecture.svg) <!-- .element: height="700px" -->
+
 ---
-## Github repo with examples
 
-https://github.com/cengique/lms-coding-widgets
+## Adding a New Project
 
-![](images/qrcode-github-repo.png)
+1. Create a project folder.
+2. Add an MDX file.
+3. Include metadata.
+4. Add images and resources.
+5. Submit changes through GitHub.
+
+---
+
+![](outreach_repository_folders.svg) <!-- .element: height="700px" style="background-color: white;" -->
+
+---
+## Projects
+
+![](tap-website-projects.png) <!-- .element: height="600px" -->
+
+---
+## Project metadata
+
+![](tap-website-project-jedi-crop.png) <!-- .element: height="600px" -->
+
+---
+## Metadata allows relational structure
+
+- List of all [projects](https://tapggc.org/projects)
+- List of all [students](https://tapggc.org/students) and [instructors](https://tapggc.org/instructors), linked to their projects
+- Blog support of Astro allows list of all publications, awards, news, etc
+- Constructed during build time, so fast during loading and searching
+
+---
+## Full project page
+
+<iframe src="https://tapggc.org/projects/2023/fall/jedi-sphero/" width="100%" height="600px"></iframe>
+
+---
+## More in project's GitHub repository 
+
+![](screenshot-jedi-sphero-github.png) <!-- .element: height="600px" -->
+---
+
+## Results
+
+- 40+ outreach activities
+- 14,000+ unique visitors
+- 250,000+ requests
+
+![](tapggc-org-Cloudflare-analytics-countries-aug-2026.png) <!-- .element: height="300px" style="background-color: white;" -->
+
+Cloudflare analytics for tapggc.org, August 2026
+
+---
+
+## Conclusions
+
+- Preserve student-created educational resources.
+- Make outreach activities publicly accessible.
+- Support adoption and reuse by educators.
+- Showcase student work to the community and future employers.
+- Inspire new students to develop new and interesting projects.
+
+
+---
+## Future Work
+
+- Continue to add new outreach projects; and simplify the process for students to contribute.
+- Project rating and feedback system for educators to share their experiences with the activities.
+- Investigate interest for contributions from other institutions.
+- Add more metadata for better search and discovery.
+- Improve user interface and add new pages to showcase student research and achievements.
+
+---
+## Thanks to:
+
+- TAP [students](https://tapggc.org/students) and [instructors](https://tapggc.org/instructors) who contributed to the repository.
+- National Science Foundation (NSF) [BPC-DP Award # 2315804](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2315804). ![](/logos/NSF_Official_logo.png) <!-- .element: height="100px" style="float: right;" -->
+- GGC [School of Science and Technology](https://www.ggc.edu/academics/schools/school-of-science-and-technology) and [Department of Information Technology](https://www.ggc.edu/academics/degrees-and-programs/information-technology) for supporting TAP.
+- And you for listening to our presentation! Any questions?
+
+<div style="width: 45%; margin: auto; text-align: center; display: inline-block; vertical-align: middle;">
+
+### https://tapggc.org
+
+</div>
+<div style="width: 45%; margin: auto; text-align: center; display: inline-block; vertical-align: middle;">
+
+![](/images/tapggcorg.png) <!-- .element: height="200px" style="background-color: white;" -->
+
+</div>
+
+Anca Doloc-Mihu _et al_. 2025. ACM SIGCITE 2025. [doi:10.1145/3769694.3771134](https://doi.org/10.1145/3769694.3771134)
