@@ -3,8 +3,15 @@
 import 'reveal.js/reveal.css';
 import 'reveal.js/theme/black.css';
 
-let title = `${Astro.props.title} - GGC Technology Ambassadors Program`;
-let description = `${Astro.props.description}`;
+interface Props {
+  markdown: string;
+  title?: string;
+  description?: string;
+}
+
+const markdown = Astro.props?.markdown || '';
+const title = `${Astro.props?.title || 'Presentation'} - GGC Technology Ambassadors Program`;
+const description = Astro.props?.description || '';
 ---
 <html>
   <head>
@@ -21,10 +28,12 @@ let description = `${Astro.props.description}`;
   <body>
     <div class="reveal">
       <div class="slides">
-        <section data-markdown>
-          <textarea data-template>
-            <slot />
-          </textarea>
+        <section data-markdown
+          data-separator="^---$"
+          data-separator-vertical="^--$"
+          data-separator-notes="^Note:"
+          >
+          <textarea data-template set:html={markdown} />
         </section>
       </div>
     </div>
@@ -32,11 +41,13 @@ let description = `${Astro.props.description}`;
         import Reveal from 'reveal.js';
         import Markdown from 'reveal.js/plugin/markdown';
         import RevealHighlight from 'reveal.js/plugin/highlight';
+        import Notes from 'reveal.js/plugin/notes';
+        import Math from 'reveal.js/plugin/math';
 
         // Check if reveal 
         let deck = new Reveal({
 
-        plugins: [Markdown, RevealHighlight],
+        plugins: [Markdown, RevealHighlight, Notes, Math],
 
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be

@@ -1,223 +1,172 @@
 ---
-// Reveal.js imports
-import 'reveal.js/reveal.css';
-import 'reveal.js/theme/black.css';
+import RevealLayout from '../../../layouts/reveal.astro';
 
-let title = `SIGCITE 2026 Presentation - GGC Technology Ambassadors Program`;
-let description = `An Online Repository of Technology Outreach Projects`;
+const title = `SIGCITE 2026 Presentation - GGC Technology Ambassadors Program`;
+const description = `An Online Repository of Technology Outreach Projects`;
 ---
-<html>
-  <head>
-    <meta charset="UTF-8">
-	<meta name="keywords" content="k-12, college, outreach, technology, fun, enagaging, coding, programming, undergraduate">
-	<meta name="description" content={description}>
-	<meta name="author" content="Technology Ambassadors Program (TAP)">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{title}</title>
+<RevealLayout title={title} description={description} markdown=`
+![](/images/tap-logo-dark.png) <!-- .element: height="100px" style="float: left;" -->
+![](/logos/ggc-logo-dark.png) <!-- .element: height="100px" style="float: right;" -->
 
-    <!--link rel="stylesheet" href="dist/reveal.css" />
-    <link rel="stylesheet" href="dist/theme/white.css" /-->
-  </head>
-  <body>
-    <div class="reveal">
-      <div class="slides">
-        <section data-markdown>
-          <textarea data-template>
-            ![](/images/tap-logo-dark.png) <!-- .element: height="100px" style="float: left;" -->
-            ![](/logos/ggc-logo-dark.png) <!-- .element: height="100px" style="float: right;" -->
-            ### An Online Repository of <br>Technology Outreach Projects
+### An Online Repository of <br>Technology Outreach Projects
 
-            Cengiz Gunay, Thanh Tran, Kelechi Ariwodo, Trung Dao, Anca Doloc-Mihu
+Cengiz Gunay, Thanh Tran, Kelechi Ariwodo, Trung Dao, Anca Doloc-Mihu
             
-            Department of Information Technology <br>
-            School of Science and Technology <br>
-            Georgia Gwinnett College
+Department of Information Technology <br>
+School of Science and Technology <br>
+Georgia Gwinnett College
 
-            _The 27th ACM Annual Conference on Cybersecurity and Information Technology Education (ACM SIGCITE 2026)_
-            
-            _University of North Carolina Wilmington_
+_The 27th ACM Annual Conference on Cybersecurity and Information Technology Education (ACM SIGCITE 2026)_
 
-            November 13, 2026
-            
-            ---
-            ## Why an Outreach Repository?
+_University of North Carolina Wilmington_
 
-            - Hands-on activities help introduce technology concepts.
-            - Service learning course under Technology Ambassadors Program (TAP).
-            - Students develop new outreach projects every semester.
-            - Existing projects represent a valuable educational resource for K-12 and college.
+November 13, 2026
 
-            Note:
-            Ask the audience what happens to student-created
-            teaching materials after a semester ends.
+---
+## Why an Outreach Repository?
 
-            ---
+- Hands-on activities help introduce technology concepts.
+- Service learning course under Technology Ambassadors Program (TAP).
+- Students develop new outreach projects every semester.
+- Existing projects represent a valuable educational resource for K-12 and college.
 
-            ## The Problem
+Note:
+Ask the audience what happens to student-created
+teaching materials after a semester ends.
 
-            - Materials stored in private LMS (BrightSpace D2L).
-            - Distributed across courses and instructors.
-            - Not publicly accessible by K-12 educators.
-            - Difficult to discover and reuse previous projects.
+---
 
-            ---
+## The Problem
 
-            ## Related Work
+- Materials stored in private LMS (BrightSpace D2L).
+- Distributed across courses and instructors.
+- Not publicly accessible by K-12 educators.
+- Difficult to discover and reuse previous projects.
 
-            - [CS Unplugged](https://csunplugged.org/en/) - offline activities for teaching computer science concepts.
-            - [BPCnet.org](https://bpcnet.org/) - repository of outreach activities for broadening participation in computing (discontinued).
-            - [CSforAll](https://csforall.org/) - resources for expanding computer science education.
-            - [Code.org](https://code.org/) - free curriculum and tools that help teachers build digital fluency.
-            - And other smaller projects and repositories.
+---
 
-            ---
+## Related Work
 
-            ## Our Solution
+- [CS Unplugged](https://csunplugged.org/en/) - offline activities for teaching computer science concepts.
+- [BPCnet.org](https://bpcnet.org/) - repository of outreach activities for broadening participation in computing (discontinued).
+- [CSforAll](https://csforall.org/) - resources for expanding computer science education.
+- [Code.org](https://code.org/) - free curriculum and tools that help teachers build digital fluency.
+- And other smaller projects and repositories.
 
-            A public repository of outreach projects: [https://tapggc.org](https://tapggc.org)
+---
 
-            <iframe src="https://tapggc.org" width="100%" height="600px"></iframe>
+## Our Solution
 
-            ---
+A public repository of outreach projects: [https://tapggc.org](https://tapggc.org)
 
-            ## Sustainable Architecture
+<iframe src="https://tapggc.org" width="100%" height="600px"></iframe>
 
-            GitHub → Astro + Vue.js → GitHub Pages
+---
 
-            - Markdown and MDX content
-            - Static site generation
-            - Dynamic components
-            - Automated deployment
+## Sustainable Architecture
 
-            ---
+GitHub → Astro + Vue.js → GitHub Pages
 
-            ![](/presentations/sigcite2026/outreach_repository_architecture.svg) <!-- .element: height="700px" -->
+- Markdown and MDX content
+- Static site generation
+- Dynamic components
+- Automated deployment
 
-            ---
+---
 
-            ## Adding a New Project
+![](/presentations/sigcite2026/outreach_repository_architecture.svg) <!-- .element: height="700px" -->
 
-            1. Create a project folder.
-            2. Add an MDX file.
-            3. Include metadata.
-            4. Add images and resources.
-            5. Submit changes through GitHub.
+---
 
-            ---
+## Adding a New Project
 
-            ![](/presentations/sigcite2026/outreach_repository_folders.svg) <!-- .element: height="700px" style="background-color: white;" -->
+1. Create a project folder.
+2. Add an MDX file.
+3. Include metadata.
+4. Add images and resources.
+5. Submit changes through GitHub.
 
-            ---
-            ## Projects
+---
 
-            ![](/presentations/sigcite2026/tap-website-projects.png) <!-- .element: height="600px" -->
+![](/presentations/sigcite2026/outreach_repository_folders.svg) <!-- .element: height="700px" style="background-color: white;" -->
 
-            ---
-            ## Project metadata
+---
+## Projects
 
-            ![](/presentations/sigcite2026/tap-website-project-jedi-crop.png) <!-- .element: height="600px" -->
+![](/presentations/sigcite2026/tap-website-projects.png) <!-- .element: height="600px" -->
 
-            ---
-            ## Metadata allows relational structure
+---
+## Project metadata
 
-            - List of all [projects](https://tapggc.org/projects)
-            - List of all [students](https://tapggc.org/students) and [instructors](https://tapggc.org/instructors), linked to their projects
-            - Blog support of Astro allows list of all publications, awards, news, etc
-            - Constructed during build time, so fast during loading and searching
+![](/presentations/sigcite2026/tap-website-project-jedi-crop.png) <!-- .element: height="600px" -->
 
-            ---
-            ## Full project page
+---
+## Metadata allows relational structure
 
-            <iframe src="https://tapggc.org/projects/2023/fall/jedi-sphero/" width="100%" height="600px"></iframe>
+- List of all [projects](https://tapggc.org/projects)
+- List of all [students](https://tapggc.org/students) and [instructors](https://tapggc.org/instructors), linked to their projects
+- Blog support of Astro allows list of all publications, awards, news, etc
+- Constructed during build time, so fast during loading and searching
 
-            ---
-            ## More in project's GitHub repository 
+---
+## Full project page
 
-            ![](/presentations/sigcite2026/screenshot-jedi-sphero-github.png) <!-- .element: height="600px" -->
-            ---
+<iframe src="https://tapggc.org/projects/2023/fall/jedi-sphero/" width="100%" height="600px"></iframe>
 
-            ## Results
+---
+## More in project's GitHub repository 
 
-            - 40+ outreach activities
-            - 14,000+ unique visitors
-            - 250,000+ requests
+![](/presentations/sigcite2026/screenshot-jedi-sphero-github.png) <!-- .element: height="600px" -->
+---
 
-            ![](/presentations/sigcite2026/tapggc-org-Cloudflare-analytics-countries-aug-2026.png) <!-- .element: height="300px" style="background-color: white;" -->
-            
-            Cloudflare analytics for tapggc.org, August 2026
+## Results
 
-            ---
+- 40+ outreach activities
+- 14,000+ unique visitors
+- 250,000+ requests
 
-            ## Conclusions
+![](/presentations/sigcite2026/tapggc-org-Cloudflare-analytics-countries-aug-2026.png) <!-- .element: height="300px" style="background-color: white;" -->
 
-            - Preserve student-created educational resources.
-            - Make outreach activities publicly accessible.
-            - Support adoption and reuse by educators.
-            - Showcase student work to the community and future employers.
-            - Inspire new students to develop new and interesting projects.
+Cloudflare analytics for tapggc.org, August 2026
+
+---
+
+## Conclusions
+
+- Preserve student-created educational resources.
+- Make outreach activities publicly accessible.
+- Support adoption and reuse by educators.
+- Showcase student work to the community and future employers.
+- Inspire new students to develop new and interesting projects.
 
 
-            ---
-            ## Future Work
+---
+## Future Work
 
-            - Continue to add new outreach projects; and simplify the process for students to contribute.
-            - Project rating and feedback system for educators to share their experiences with the activities.
-            - Investigate interest for contributions from other institutions.
-            - Add more metadata for better search and discovery.
-            - Improve user interface and add new pages to showcase student research and achievements.
-    
-            ---
-            ## Thanks to:
+- Continue to add new outreach projects; and simplify the process for students to contribute.
+- Project rating and feedback system for educators to share their experiences with the activities.
+- Investigate interest for contributions from other institutions.
+- Add more metadata for better search and discovery.
+- Improve user interface and add new pages to showcase student research and achievements.
 
-            - TAP [students](https://tapggc.org/students) and [instructors](https://tapggc.org/instructors) who contributed to the repository.
-            - National Science Foundation (NSF) [BPC-DP Award # 2315804](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2315804). ![](/logos/NSF_Official_logo.png) <!-- .element: height="100px" style="float: right;" -->
-            - GGC [School of Science and Technology](https://www.ggc.edu/academics/schools/school-of-science-and-technology) and [Department of Information Technology](https://www.ggc.edu/academics/degrees-and-programs/information-technology) for supporting TAP.
-            - And you for listening to our presentation! Any questions?
+---
+## Thanks to:
 
-            <div style="width: 45%; margin: auto; text-align: center; display: inline-block; vertical-align: middle;">
+- TAP [students](https://tapggc.org/students) and [instructors](https://tapggc.org/instructors) who contributed to the repository.
+- National Science Foundation (NSF) [BPC-DP Award # 2315804](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2315804). ![](/logos/NSF_Official_logo.png) <!-- .element: height="100px" style="float: right;" -->
+- GGC [School of Science and Technology](https://www.ggc.edu/academics/schools/school-of-science-and-technology) and [Department of Information Technology](https://www.ggc.edu/academics/degrees-and-programs/information-technology) for supporting TAP.
+- And you for listening to our presentation! Any questions?
 
-            ### https://tapggc.org
+<div style="width: 45%; margin: auto; text-align: center; display: inline-block; vertical-align: middle;">
 
-            </div>
-            <div style="width: 45%; margin: auto; text-align: center; display: inline-block; vertical-align: middle;">
+### https://tapggc.org
 
-            ![](/presentations/sigcite2026/tapggcorg.png) <!-- .element: height="200px" style="background-color: white;" -->
-            
-            </div>
+</div>
+<div style="width: 45%; margin: auto; text-align: center; display: inline-block; vertical-align: middle;">
 
-            Anca Doloc-Mihu _et al_. 2025. ACM SIGCITE 2025. [doi:10.1145/3769694.3771134](https://doi.org/10.1145/3769694.3771134)
+![](/presentations/sigcite2026/tapggcorg.png) <!-- .element: height="200px" style="background-color: white;" -->
 
-            </textarea>
-        </section>
-      </div>
-    </div>
-    <script>
-        import Reveal from 'reveal.js';
-        import Markdown from 'reveal.js/plugin/markdown';
-        import RevealHighlight from 'reveal.js/plugin/highlight';
+</div>
 
-        // Check if reveal 
-        let deck = new Reveal({
-
-        plugins: [Markdown, RevealHighlight],
-
-        // The "normal" size of the presentation, aspect ratio will be preserved
-        // when the presentation is scaled to fit different resolutions. Can be
-        // specified using percentage units.
-        width: 1280, // 960
-        height: 720, // 700
-
-        // Factor of the display size that should remain empty around the content
-        margin: 0.1,
-        
-        // Link to each page
-        history: true,
-
-        // Bounds for smallest/largest possible scale to apply to content
-        minScale: 0.2,
-        maxScale: 1.5,
-        });
-        deck.initialize();
-    </script>
-  </body>
-</html>
+Anca Doloc-Mihu _et al_. 2025. ACM SIGCITE 2025. [doi:10.1145/3769694.3771134](https://doi.org/10.1145/3769694.3771134)
+`/>
