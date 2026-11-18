@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import type { ImageMetadata } from 'astro';
+import RevealLayout from '../../layouts/reveal.astro';
+
+// Hack to resolve images contained in Markdown files inside src/content/slides/ folder
+export async function getStaticPaths() {
+  const decks = await getCollection('slides');
+
+  // 1. Eagerly load all images inside src/content/slides/
+  const images = import.meta.glob<{ default: ImageMetadata }>(
+    '/src/content/slides/**/*.{png,jpg,jpeg,webp,gif,svg}',
+    { eager: true }
+  );
+
+  return decks.map((deck) => {
+     // Determine the folder path of the current Markdown file
+    // e.g., deck.id = "tap-website-sigcite-2026/slides.md" -> "/src/content/slides/tap-website-sigcite-2026"
+    const folder = deck.id.includes('/')
+      ? `/src/content/slides/${deck.id.substring(0, deck.id.lastIndexOf('/'))}`
+      : '/src/content/slides';
+
+    // 2. Replace relative Markdown image paths (![alt](./img.png) or ![alt](img.png))
+    const resolvedMarkdown = (deck.body ?? '').replace(
+      /!\[([^\]]*)\]\((?!https?:\/\/|\/)([^)]+)\)/g,
+      (match, alt, relPath) => {
+        const cleanRelPath = relPath.replace(/^\.\//, '');
+        const fullAssetPath = `${folder}/${cleanRelPath}`;
+        const asset = images[fullAssetPath]?.default;
+
+        return asset ? `![${alt}](${asset.src})` : match;
+      }
+    );
+
+    return {
+      // Note: Astro 5 uses deck.id instead of deck.slug by default
+      params: { slidesId: deck.data.id },
+      props: { deck, resolvedMarkdown },
+    };
+  });
+}
+
+const { deck, resolvedMarkdown } = Astro.props;
+const { slidesId } = Astro.params;
+---
+
+<RevealLayout title={deck.data.title} description={deck.data.description} markdown={resolvedMarkdown} />

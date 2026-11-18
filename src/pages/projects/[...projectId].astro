@@ -51,7 +51,7 @@ export async function getStaticPaths() {
 // Goal 2: Actually  
 // 2. For your template, you can get the entry directly from the prop
 // const { slug } = Astro.params;
-const { project} = Astro.props;
+const { project } = Astro.props;
 const { Content } = await project.render();
 
 const allProjects = await getCollection('projects');

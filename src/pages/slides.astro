@@ -1,0 +1,18 @@
+---
+import TAPDefaultLayout from "../layouts/default.astro";
+import TAPCalendar from "../components/TAPCalendar.vue";
+import Crumbs from '../components/Crumbs.vue';
+import Search from "../components/Search.vue"
+
+import { getCollection } from 'astro:content';
+
+const slides = (await getCollection('slides')).sort((p1,p2) => p2.data.postDate - p1.data.postDate);
+---
+<TAPDefaultLayout title="All TAP Presentations">
+
+    <Crumbs pageType="slides" pageUrl="/slides" />
+
+    <Search client:load eventsList={slides}/>
+
+
+</TAPDefaultLayout>

@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1400"
+   height="900"
+   viewBox="0 0 1400 900"
+   version="1.1"
+   id="svg52"
+   sodipodi:docname="outreach_repository_architecture.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview52"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.0233333"
+     inkscape:cx="719.21824"
+     inkscape:cy="366.93811"
+     inkscape:window-width="1920"
+     inkscape:window-height="1052"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg52"
+     showguides="true" />
+  <rect
+     width="100%"
+     height="100%"
+     fill="white"
+     id="rect1" />
+  <style
+     id="style1">
+.title {font:700 34px Arial,sans-serif; fill:#17202a}
+.subtitle {font:italic 20px Arial,sans-serif; fill:#4b5563}
+.head {font:700 21px Arial,sans-serif; fill:#17202a}
+.body {font:17px Arial,sans-serif; fill:#17202a}
+.small {font:15px Arial,sans-serif; fill:#374151}
+.arrow {font:700 16px Arial,sans-serif; fill:#374151}
+</style>
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="marker54"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path54" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker53"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path53" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker52"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path52" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+    <marker
+       id="arrow"
+       markerWidth="12"
+       markerHeight="12"
+       refX="10"
+       refY="6"
+       orient="auto">
+      <path
+         d="M0,0 L12,6 L0,12 z"
+         fill="#4b5563"
+         id="path1" />
+    </marker>
+  </defs>
+  <text
+     x="700.0"
+     y="55"
+     class="title"
+     text-anchor="middle"
+     id="text1">Outreach Project Repository Architecture</text>
+  <text
+     x="700.0"
+     y="88"
+     class="subtitle"
+     text-anchor="middle"
+     id="text2">Source on GitHub → Build with Astro (SSG) + Vue.js → Publish on GitHub Pages</text>
+  <rect
+     x="45"
+     y="155"
+     width="235"
+     height="500"
+     rx="18"
+     fill="#fff8e8"
+     stroke="#d89b1d"
+     stroke-width="2"
+     id="rect2" />
+  <rect
+     x="45"
+     y="155"
+     width="235"
+     height="62"
+     rx="18"
+     fill="#fff8e8"
+     stroke="#d89b1d"
+     stroke-width="2"
+     id="rect3" />
+  <rect
+     x="45"
+     y="186"
+     width="235"
+     height="31"
+     fill="#fff8e8"
+     stroke="none"
+     id="rect4" />
+  <text
+     x="162.5"
+     y="194"
+     class="head"
+     text-anchor="middle"
+     id="text4">1. Author &amp; Contribute</text>
+  <rect
+     x="1060"
+     y="155"
+     width="295"
+     height="500"
+     rx="18"
+     fill="#f5efff"
+     stroke="#8a63c7"
+     stroke-width="2"
+     id="rect11" />
+  <rect
+     x="1060"
+     y="155"
+     width="295"
+     height="62"
+     rx="18"
+     fill="#f5efff"
+     stroke="#8a63c7"
+     stroke-width="2"
+     id="rect12" />
+  <rect
+     x="1060"
+     y="186"
+     width="295"
+     height="31"
+     fill="#f5efff"
+     stroke="none"
+     id="rect13" />
+  <text
+     x="1207.5"
+     y="194"
+     class="head"
+     text-anchor="middle"
+     id="text13">4. Publish</text>
+  <text
+     x="162"
+     y="285"
+     class="head"
+     text-anchor="middle"
+     id="text14">●  ●</text>
+  <text
+     x="162"
+     y="310"
+     class="head"
+     text-anchor="middle"
+     id="text15">●</text>
+  <text
+     x="162"
+     y="370"
+     class="body"
+     text-anchor="middle"
+     id="text16">Outreach team</text>
+  <text
+     x="162"
+     y="397"
+     class="body"
+     text-anchor="middle"
+     id="text17">contributors</text>
+  <rect
+     x="77"
+     y="450"
+     width="170"
+     height="36"
+     rx="18"
+     fill="#fff3cf"
+     stroke="#d89b1d"
+     stroke-width="1.5"
+     id="rect17" />
+  <text
+     x="162.0"
+     y="474"
+     class="small"
+     text-anchor="middle"
+     id="text18">Write &amp; commit</text>
+  <g
+     id="g54"
+     transform="translate(26)">
+    <rect
+       x="325"
+       y="155"
+       width="315"
+       height="500"
+       rx="18"
+       fill="#eef6ff"
+       stroke="#4d8fd8"
+       stroke-width="2"
+       id="rect5" />
+    <rect
+       x="325"
+       y="155"
+       width="315"
+       height="62"
+       rx="18"
+       fill="#eef6ff"
+       stroke="#4d8fd8"
+       stroke-width="2"
+       id="rect6" />
+    <rect
+       x="325"
+       y="186"
+       width="315"
+       height="31"
+       fill="#eef6ff"
+       stroke="none"
+       id="rect7" />
+    <text
+       x="482.5"
+       y="194"
+       class="head"
+       text-anchor="middle"
+       id="text7"
+       style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:21px;line-height:normal;font-family:Arial, sans-serif">2. Source Repository</text>
+    <text
+       x="350"
+       y="250"
+       class="body"
+       text-anchor="start"
+       id="text19"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17px;line-height:normal;font-family:Arial, sans-serif">Repository contents</text>
+    <rect
+       x="350"
+       y="285"
+       width="265"
+       height="60"
+       rx="10"
+       fill="#ffffff"
+       stroke="#b9d4ef"
+       stroke-width="1"
+       id="rect19" />
+    <text
+       x="365"
+       y="310"
+       class="body"
+       text-anchor="start"
+       id="text20"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17px;line-height:normal;font-family:Arial, sans-serif">Markdown (MD)</text>
+    <text
+       x="365"
+       y="332"
+       class="small"
+       text-anchor="start"
+       id="text21"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:normal;font-family:Arial, sans-serif">Source content</text>
+    <rect
+       x="350"
+       y="354"
+       width="265"
+       height="60"
+       rx="10"
+       fill="#ffffff"
+       stroke="#b9d4ef"
+       stroke-width="1"
+       id="rect21" />
+    <text
+       x="365"
+       y="379"
+       class="body"
+       text-anchor="start"
+       id="text22"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17px;line-height:normal;font-family:Arial, sans-serif">MDX</text>
+    <text
+       x="365"
+       y="401"
+       class="small"
+       text-anchor="start"
+       id="text23"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:normal;font-family:Arial, sans-serif">Content + components</text>
+    <rect
+       x="350"
+       y="423"
+       width="265"
+       height="60"
+       rx="10"
+       fill="#ffffff"
+       stroke="#b9d4ef"
+       stroke-width="1"
+       id="rect23" />
+    <text
+       x="365"
+       y="448"
+       class="body"
+       text-anchor="start"
+       id="text24"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17px;line-height:normal;font-family:Arial, sans-serif">Astro configuration</text>
+    <text
+       x="365"
+       y="470"
+       class="small"
+       text-anchor="start"
+       id="text25"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:normal;font-family:Arial, sans-serif">Site configuration</text>
+    <rect
+       x="350"
+       y="492"
+       width="265"
+       height="60"
+       rx="10"
+       fill="#ffffff"
+       stroke="#b9d4ef"
+       stroke-width="1"
+       id="rect25" />
+    <text
+       x="365"
+       y="517"
+       class="body"
+       text-anchor="start"
+       id="text26"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17px;line-height:normal;font-family:Arial, sans-serif">Assets</text>
+    <text
+       x="365"
+       y="539"
+       class="small"
+       text-anchor="start"
+       id="text27"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:normal;font-family:Arial, sans-serif">Images, media, data</text>
+    <rect
+       x="350"
+       y="561"
+       width="265"
+       height="60"
+       rx="10"
+       fill="#ffffff"
+       stroke="#b9d4ef"
+       stroke-width="1"
+       id="rect27" />
+    <text
+       x="365"
+       y="586"
+       class="body"
+       text-anchor="start"
+       id="text28"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17px;line-height:normal;font-family:Arial, sans-serif">Vue components</text>
+    <text
+       x="365"
+       y="608"
+       class="small"
+       text-anchor="start"
+       id="text29"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:normal;font-family:Arial, sans-serif">Custom dynamic content</text>
+  </g>
+  <g
+     id="g53"
+     transform="translate(8)">
+    <rect
+       x="708.45276"
+       y="155"
+       width="284.07169"
+       height="500"
+       rx="18"
+       fill="#eef9ef"
+       stroke="#61a56a"
+       stroke-width="2"
+       id="rect8"
+       ry="0" />
+    <rect
+       x="708.45276"
+       y="155"
+       width="283.84476"
+       height="62"
+       rx="18"
+       fill="#eef9ef"
+       stroke="#61a56a"
+       stroke-width="2"
+       id="rect9" />
+    <rect
+       x="708.45276"
+       y="186"
+       width="284.07169"
+       height="31"
+       fill="#eef9ef"
+       stroke="none"
+       id="rect10" />
+    <text
+       x="850"
+       y="194"
+       class="head"
+       text-anchor="middle"
+       id="text10"
+       style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:21px;line-height:normal;font-family:Arial, sans-serif">3. Build</text>
+    <text
+       x="850"
+       y="245"
+       class="head"
+       text-anchor="middle"
+       id="text30"
+       style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:21px;line-height:normal;font-family:Arial, sans-serif">Astro</text>
+    <text
+       x="850"
+       y="277"
+       class="body"
+       text-anchor="middle"
+       id="text31"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17px;line-height:normal;font-family:Arial, sans-serif">Static Site Generator (SSG)</text>
+    <rect
+       x="730"
+       y="315"
+       width="240"
+       height="36"
+       rx="18"
+       fill="#ffffff"
+       stroke="#61a56a"
+       stroke-width="1.5"
+       id="rect31" />
+    <text
+       x="850"
+       y="339"
+       class="small"
+       text-anchor="middle"
+       id="text32"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:normal;font-family:Arial, sans-serif">MD / MDX → static output</text>
+    <rect
+       x="730"
+       y="375"
+       width="240"
+       height="110"
+       rx="12"
+       fill="#ffffff"
+       stroke="#a9d3ae"
+       stroke-width="1.5"
+       id="rect32" />
+    <text
+       x="850"
+       y="408"
+       class="head"
+       text-anchor="middle"
+       id="text33"
+       style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:21px;line-height:normal;font-family:Arial, sans-serif">Vue.js</text>
+    <text
+       x="850"
+       y="435"
+       class="body"
+       text-anchor="middle"
+       id="text34"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17px;line-height:normal;font-family:Arial, sans-serif">Dynamic / interactive</text>
+    <text
+       x="850"
+       y="460"
+       class="body"
+       text-anchor="middle"
+       id="text35"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17px;line-height:normal;font-family:Arial, sans-serif">components on the client</text>
+    <line
+       x1="850"
+       y1="500"
+       x2="850"
+       y2="535"
+       stroke="#61a56a"
+       stroke-width="3"
+       marker-end="url(#arrow)"
+       id="line35" />
+    <rect
+       x="745"
+       y="550"
+       width="210"
+       height="36"
+       rx="18"
+       fill="#eaf7eb"
+       stroke="#61a56a"
+       stroke-width="1.5"
+       id="rect35" />
+    <text
+       x="850"
+       y="574"
+       class="small"
+       text-anchor="middle"
+       id="text36"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:normal;font-family:Arial, sans-serif">Static site output</text>
+  </g>
+  <text
+     x="1207"
+     y="245"
+     class="head"
+     text-anchor="middle"
+     id="text37">GitHub Pages</text>
+  <rect
+     x="1090"
+     y="290"
+     width="235"
+     height="115"
+     rx="1.5"
+     fill="white"
+     stroke="#b69be0"
+     stroke-width="2"
+     id="rect37" />
+  <text
+     x="1207"
+     y="325"
+     class="body"
+     text-anchor="middle"
+     id="text38">Published website</text>
+  <text
+     x="1207"
+     y="352"
+     class="small"
+     text-anchor="middle"
+     id="text39">HTML · CSS · JS · assets</text>
+  <text
+     x="1207"
+     y="450"
+     class="body"
+     text-anchor="middle"
+     id="text40">Public web access</text>
+  <rect
+     x="1098.6439"
+     y="490.0434"
+     width="218.75214"
+     height="35.913185"
+     rx="20.192505"
+     fill="#f6f0ff"
+     stroke="#8a63c7"
+     stroke-width="1.58681"
+     id="rect40" />
+  <text
+     x="1207.5"
+     y="514"
+     class="small"
+     text-anchor="middle"
+     id="text41"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:normal;font-family:Arial, sans-serif">https://website.org/projects/</text>
+  <line
+     x1="280"
+     y1="405"
+     x2="335.32483"
+     y2="405"
+     stroke="#4b5563"
+     stroke-width="3.52818"
+     marker-end="url(#arrow)"
+     id="line41"
+     style="marker-end:url(#Triangle)" />
+  <text
+     x="316"
+     y="382"
+     class="arrow"
+     text-anchor="middle"
+     id="text42"
+     style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:16px;line-height:normal;font-family:Arial, sans-serif">commit</text>
+  <line
+     x1="666.25739"
+     y1="405"
+     x2="706.40149"
+     y2="405"
+     stroke="#4b5563"
+     stroke-width="3.0054"
+     marker-end="url(#arrow)"
+     id="line42"
+     style="marker-end:url(#marker52)" />
+  <text
+     x="692"
+     y="382"
+     class="arrow"
+     text-anchor="middle"
+     id="text43"
+     style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:16px;line-height:normal;font-family:Arial, sans-serif">build</text>
+  <line
+     x1="1001.5258"
+     y1="405"
+     x2="1046.9823"
+     y2="405"
+     stroke="#4b5563"
+     stroke-width="3.19808"
+     marker-end="url(#arrow)"
+     id="line43"
+     style="marker-end:url(#marker53)" />
+  <text
+     x="1029"
+     y="382"
+     class="arrow"
+     text-anchor="middle"
+     id="text44"
+     style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:16px;line-height:normal;font-family:Arial, sans-serif">deploy</text>
+  <rect
+     x="250"
+     y="705"
+     width="1100"
+     height="135"
+     rx="18"
+     fill="#fafafa"
+     stroke="#c7cdd4"
+     stroke-width="2"
+     id="rect44" />
+  <text
+     x="800"
+     y="740"
+     class="head"
+     text-anchor="middle"
+     id="text45">5. Site Users</text>
+  <text
+     x="800"
+     y="775"
+     class="body"
+     text-anchor="middle"
+     id="text46">Teachers • students • educators • community</text>
+  <text
+     x="800"
+     y="808"
+     class="small"
+     text-anchor="middle"
+     id="text47">Access the published outreach resources through a web browser</text>
+  <line
+     x1="1205"
+     y1="655"
+     x2="1205"
+     y2="700"
+     stroke="#4b5563"
+     stroke-width="3"
+     marker-end="url(#arrow)"
+     id="line47"
+     style="marker-end:url(#marker54)" />
+  <rect
+     x="45"
+     y="690"
+     width="165"
+     height="150"
+     rx="14"
+     fill="#f8fafc"
+     stroke="#9ca3af"
+     stroke-width="1.5"
+     id="rect47" />
+  <text
+     x="127"
+     y="720"
+     class="head"
+     text-anchor="middle"
+     id="text48">Why Astro?</text>
+  <text
+     x="127"
+     y="752"
+     class="small"
+     text-anchor="middle"
+     id="text49">Custom</text>
+  <text
+     x="127"
+     y="774"
+     class="small"
+     text-anchor="middle"
+     id="text50">functionality</text>
+  <text
+     x="127"
+     y="800"
+     class="small"
+     text-anchor="middle"
+     id="text51">+ Markdown / MDX</text>
+  <text
+     x="127"
+     y="822"
+     class="small"
+     text-anchor="middle"
+     id="text52">content authoring</text>
+</svg>

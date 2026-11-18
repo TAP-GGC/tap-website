@@ -46,6 +46,7 @@
     "lightgallery": "^2.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "reveal.js": "^6.0.2",
     "sharp": "^0.34.1",
     "svelte": "^4.2.2",
     "uuid": "^8.3.2",

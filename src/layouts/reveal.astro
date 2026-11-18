@@ -1,0 +1,71 @@
+---
+// Reveal.js imports
+import 'reveal.js/reveal.css';
+import 'reveal.js/theme/black.css';
+
+interface Props {
+  markdown: string;
+  title?: string;
+  description?: string;
+}
+
+const markdown = Astro.props?.markdown || '';
+const title = `${Astro.props?.title || 'Presentation'} - GGC Technology Ambassadors Program`;
+const description = Astro.props?.description || '';
+---
+<html>
+  <head>
+    <meta charset="UTF-8">
+	<meta name="keywords" content="k-12, college, outreach, technology, fun, enagaging, coding, programming, undergraduate">
+	<meta name="description" content={description}>
+	<meta name="author" content="Technology Ambassadors Program (TAP)">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{title}</title>
+
+    <!--link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/white.css" /-->
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown
+          data-separator="^---$"
+          data-separator-vertical="^--$"
+          data-separator-notes="^Note:"
+          >
+          <textarea data-template set:html={markdown} />
+        </section>
+      </div>
+    </div>
+    <script>
+        import Reveal from 'reveal.js';
+        import Markdown from 'reveal.js/plugin/markdown';
+        import RevealHighlight from 'reveal.js/plugin/highlight';
+        import Notes from 'reveal.js/plugin/notes';
+        import Math from 'reveal.js/plugin/math';
+
+        // Check if reveal 
+        let deck = new Reveal({
+
+        plugins: [Markdown, RevealHighlight, Notes, Math],
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280, // 960
+        height: 720, // 700
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+        
+        // Link to each page
+        history: true,
+
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 0.2,
+        maxScale: 1.5,
+        });
+        deck.initialize();
+    </script>
+  </body>
+</html>
