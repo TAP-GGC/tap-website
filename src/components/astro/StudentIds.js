@@ -1,4 +1,4 @@
-/* Component for making project searches faster and easier. Returns dictionary/hash of projects by their IDs */
+/* Component for making student searches faster and easier. Returns dictionary/hash of projects by their IDs */
 import { getCollection } from 'astro:content';
 
 export async function getStudentIds() {
@@ -8,7 +8,7 @@ export async function getStudentIds() {
   const students = await getCollection('students');
   let studentIds = {};
 
-  // Build tech counts from the projects
+  // Build student IDs from the students
   students.forEach(student => {
     // Add the computed slug here
     student.data.slug = `${base}/students/${student.data.id}`;
@@ -19,11 +19,14 @@ export async function getStudentIds() {
   // Fetch the projects
   const projects = await getCollection('projects');
 
+  const createStudent = (studentId, project) => {
+    
+  };
 
   projects.forEach(project => {
     //search every project for studentIDs
-    project.data.students?.forEach(studentId => {
-      if (!(studentId in studentIds)){
+    project.data.students?.concat(project.data.curator || []).forEach(studentId => {
+      if (!(studentId in studentIds)) {
         //name convection if id doesn't exit
         studentIds[studentId] = { 
           id: studentId,
@@ -39,7 +42,7 @@ export async function getStudentIds() {
           body: '', 
         }
       }
-    })
+    });
   });
 
 
