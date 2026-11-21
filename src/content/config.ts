@@ -15,7 +15,7 @@ const eventCollection = defineCollection({
     techs: z.array(z.string()).optional(),
     semester: z.string(),
     year: z.number(),
-    eventDate: z.string().datetime().transform((str) => new Date(str)),
+    eventDate: z.date(),
     students: z.array(z.string()).optional(),
     instructors: z.array(z.string()).optional(),
     projects: z.array(z.string()).optional(),
@@ -152,8 +152,7 @@ const awardCollection = defineCollection({
     tags: z.array(z.string()),
     semester: z.string(),
     year: z.number(),
-    postDate: z.date().default(() => new Date()),
-    updateDate: z.date().optional(),
+    eventDate: z.date().default(() => new Date()),
     events: z.array(z.string()).optional(),
     students: z.array(z.string().refine(
       async (studentId) =>{
@@ -168,7 +167,7 @@ const awardCollection = defineCollection({
       async (facultyId) =>{
         const instructors = await getCollection('instructors');
 
-        return instructors.some(instructor => instructor.data.id.toLowerCase() == facultyId)
+        return instructors.some(instructor => instructor.data.id.toLowerCase() == facultyId);
       },
       (facultyId) => ({message: `Faculty '${facultyId}' not found.`})
     )).optional(),

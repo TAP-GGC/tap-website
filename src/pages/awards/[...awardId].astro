@@ -62,7 +62,7 @@ const awardName = entry.data.title;
 const awardTag = entry.data.tags;
 
 // Page title
-let title = `${entry.data.title} (${entry.data.updateDate? entry.data.updateDate.toDateString() : entry.data.postDate.toDateString()}) - GGC Technology Ambassadors Program`;
+let title = `${entry.data.title} (${entry.data.eventDate.toDateString()})`;
 
 ---
 <TAPDefaultLayout title={title}>
