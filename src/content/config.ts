@@ -31,9 +31,9 @@ const eventCollection = defineCollection({
   }),
 });
 const photoAspect = (img) => img.width / img.height;
-const eventPhotoValidator = (img) => img.width && Math.abs(photoAspect(img) - 0.75) < 0.2;
+const eventPhotoValidator = (img) => img.width && Math.abs(photoAspect(img) - 0.75) < 0.3;
 const eventPhotoValidatorMsg = (img) => ({
-  message: `Event photo image must be a 2x3 (0.75) portrait aspect ratio but given image ratio is ${Math.round(photoAspect(img) * 100) / 100}, which is more than 20% different!\n${img.src} is ${img.width}x${img.height}.`,
+  message: `Event photo image must be a 2x3 (0.75) portrait aspect ratio but given image ratio is ${Math.round(photoAspect(img) * 100) / 100}, which is more than 30% different!\n${img.src} is ${img.width}x${img.height}.`,
   path: [ "imageEvent" ]
 });
 
