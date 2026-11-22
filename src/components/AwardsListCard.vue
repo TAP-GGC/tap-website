@@ -16,6 +16,9 @@
                             <a :href="`${base}/awards/${awardEntry.data.year}/${awardEntry.data.semester}/${awardEntry.data.id}`">{{ awardEntry.data.title }}</a> &nbsp;
                             {{ awardEntry.data.eventDate.toDateString() }}
                         </li>
+                        <li>
+                            <a :href="`${base}/awards/`">More Awards . . .</a>
+                        </li>
                     </ul>
                 </div>
             </div>
