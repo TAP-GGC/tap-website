@@ -19,10 +19,6 @@ export async function getStudentIds() {
   // Fetch the projects
   const projects = await getCollection('projects');
 
-  const createStudent = (studentId, project) => {
-    
-  };
-
   projects.forEach(project => {
     //search every project for studentIDs
     project.data.students?.concat(project.data.curator || []).forEach(studentId => {

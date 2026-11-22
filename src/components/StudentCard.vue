@@ -83,28 +83,6 @@ const truncatedDescription = computed(() => {
 .studentCard h4 {
     margin-bottom: 0.5em;
 }
-.tag-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5em;
-}
-.tag {
-  display: inline-block;
-  padding: 0.25em 0.75em;
-  font-size: 0.875em;
-  background-color: var(--agnostic-primary);
-  color: var(--agnostic-btn-primary-color, var(--agnostic-light));
-  border-radius: var(--agnostic-btn-radius, var(--agnostic-radius, .25rem));
-  transition: background-color 0.3s ease, color 0.3s ease;
-  text-decoration: none; /* Remove underline from links */
-  z-index: 1; /* needed to take precedence over the card link */
-}
-
-.tag:hover {
-  background-color: #0056b3;
-  color: var(--agnostic-btn-hover-color, white); /* Change color on hover */
-
-}
 
 /* Ensure the card link covers the entire card and removes default anchor styling */
 .studentCard .card-link {

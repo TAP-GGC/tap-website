@@ -139,30 +139,6 @@ const date_options = {
     margin-bottom: 0.5em;
 }
 
-/* Tag Styling */
-.tag-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5em;
-}
-
-.tag {
-  display: inline-block;
-  padding: 0.25em 0.75em;
-  font-size: 0.875em;
-  color: var(--agnostic-btn-primary-color, var(--agnostic-light));
-  border-radius: var(--agnostic-btn-radius, var(--agnostic-radius, .25rem));
-  transition: background-color 0.3s ease, color 0.3s ease;
-  text-decoration: none;
-}
-
-/* Save this until we can have links for each tag */
-.tag:hover {
-  /* background-color: var(--agnostic-btn-primary-color); */
-  color: var(--agnostic-btn-hover-color, white); /* Change color on hover */
-
-}
-
 /* Ensure the card link covers the entire card and removes default anchor styling */
 .eventCard .card-link {
   text-decoration: none;
