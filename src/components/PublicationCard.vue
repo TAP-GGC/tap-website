@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, onMounted } from "vue";
+import { computed, ref, watchEffect } from "vue";
 // Components CSS
 import "agnostic-vue/dist/common.min.css";
 import "agnostic-vue/dist/index.css";
@@ -36,6 +36,14 @@ const openPaper = () => {
     window.open(publicationProp.item.data.paperLink, '_blank');
   }
 };
+const students = computed(() => publicationProp.item?.data?.students || []);
+const names = ref({});
+
+watchEffect(async () => {  
+  for (const studentId of students.value.concat(publicationProp.item?.data?.instructors || [])) {
+    names.value[studentId] = await formatIDtoName(studentId);
+  }
+});
 </script>
 
 <template>
@@ -61,8 +69,8 @@ const openPaper = () => {
       </p>
 
       <div class="tag-container">
-        <a v-for="(student, index) in item.data.students" :key="index" :href="`/students/${student}`" class="tag"> {{ formatIDtoName(student) }}</a>
-        <a v-for="(instructor, index) in item.data.instructors" :key="index" :href="`/instructors/${instructor}`" class="tag"> {{ formatIDtoName(instructor) }}</a>
+        <a v-for="(student, index) in item.data.students" :key="index" :href="`/students/${student}`" class="tag"> {{ names[student] }}</a>
+        <a v-for="(instructor, index) in item.data.instructors" :key="index" :href="`/instructors/${instructor}`" class="tag"> {{ names[instructor] }}</a>
 
       </div>
     </div>

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, onMounted } from "vue";
+import { computed, ref, watchEffect } from "vue";
 // Components CSS
 import "agnostic-vue/dist/common.min.css";
 import "agnostic-vue/dist/index.css";
@@ -17,20 +17,6 @@ const base = import.meta.env.BASE_URL == '/' ? '' : import.meta.env.BASE_URL;
 const eventProp = defineProps({
         item: Object
     });
-
-    // Dark mode detection
-// const isDarkMode = ref(false);
-
-// onMounted(() => {
-//   // Check for dark mode preference
-//   isDarkMode.value = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
-//   // Listen for changes
-//   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-//     isDarkMode.value = e.matches;
-//   });
-// });
-
 
 // Event Photos
 const eventPhoto = computed(() => {
@@ -58,6 +44,16 @@ const date_options = {
   month: 'short',
   day: 'numeric',
 };
+
+const students = computed(() => eventProp.item?.data?.students || []);
+const studentNames = ref({});
+
+watchEffect(async () => {  
+  for (const studentId of students.value) {
+    studentNames.value[studentId] = await formatIDtoName(studentId);
+  }
+  console.log(studentNames.value);
+});
 </script>
 
 <template>
@@ -82,7 +78,7 @@ const date_options = {
 
             <!-- Display students as Tags -->
             <div class="tag-container">
-              <a v-for="(student, index) in item.data.students" :key="index" :href="`/students/${student}`"> {{ formatIDtoName(student) }}</a>
+              <a v-for="(student, index) in item.data.students" :key="index" :href="`/students/${student}`" class="tag"> {{ studentNames[student] }}</a>
 
             </div>
       </div>
