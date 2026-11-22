@@ -39,6 +39,8 @@ import facultyIds from '../../components/astro/FacultyIds';
 //students
 import { getStudentIds } from '../../components/astro/StudentIds';
 import StudentCard from '../../components/StudentCard.vue';
+import AwardCard from '../../components/AwardCard.vue';
+import awardIds from '../../components/astro/AwardIds';
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -66,6 +68,15 @@ let title = `${entry.data.title} (${entry.data.eventDate.toDateString()}) - GGC 
   <div class="blog">
 
     <Content />
+
+    {entry.data?.awards?.[0] && (
+      <h2>Awards</h2>
+      <section class="sectionCards">
+        {entry.data.awards.map((project_id) => (      
+          <AwardCard item={awardIds[project_id]} />
+        ))}
+      </section>
+    )}
 
     {entry.data?.projects?.[0] && (
       <h2>Outreach Projects Included</h2>

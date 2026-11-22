@@ -12,7 +12,7 @@ const papers = (await getCollection('publications')).sort((p1,p2) => p2.data.pos
 
     <Crumbs pageType="publications" pageUrl="/publications" />
 
-    <Search client:load eventsList={papers}/>
+    <Search client:load eventsList={papers} context="publications" />
 
 
 </TAPDefaultLayout>

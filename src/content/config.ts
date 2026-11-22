@@ -153,6 +153,7 @@ const awardCollection = defineCollection({
     semester: z.string(),
     year: z.number(),
     eventDate: z.date().default(() => new Date()),
+    desc: z.string().optional().nullable(),
     events: z.array(z.string()).optional(),
     students: z.array(z.string().refine(
       async (studentId) =>{
@@ -178,7 +179,7 @@ const awardCollection = defineCollection({
         return projects.some(project => project.data.id.toLowerCase() == projectId)        
       },
       (projectId) => ({ message: `Project ID '${projectId}' not found.` }))).optional(),
-    image: z.string().optional(),
+    image: image().refine(eventPhotoValidator, eventPhotoValidatorMsg).optional(),
     images: z.array(z.object({
       src: image().refine((img) => img.width <= 1500, {
           message: "Image too large! Convert images to be less than 1500 pixels wide.",

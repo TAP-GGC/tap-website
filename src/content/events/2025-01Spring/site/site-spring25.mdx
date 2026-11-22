@@ -3,19 +3,24 @@ title: TAP Presentations at SITE Conference
 id: site-spring25
 semester: spring
 year: 2025
-slug: site-conference-Spring25
 tags: [nsf, tap-awards]
 eventDate: 2025-03-20T00:25:14Z
+desc: "TAP students and faculty presented their research at the SITE Conference in Orlando, FL. Anh Tang won best poster award."
+awards: [ site-award-spring25 ]
 projects: [ space-mechanic, pixel-arcade, mbot-adventures, lego-logic, pizza-heist ]
 instructors: [ anca-doloc-mihu, cindy-robertson, cengiz-gunay ]
 students: [ anh-tang, vincent-pham, celeste-echols, sanaaboddie ]
 images: [ 
-    { src: "./photos/20250321_124211.jpg", alt: '' },
-    { src: "./photos/anca at front desk.jpg", alt: '' },
-    { src: "./photos/Anh award photo.jpg", alt: '' },
-    { src: "./photos/group_photo.jpg", alt: '' },
-    { src: "./photos/sanaa volunteering at front desk.jpg", alt: '' },]
-imageEvent: "./site_Spring25Cover.jpg"
+    { src: "./photos/groupPhoto_small.jpg", alt: 'Students and faculty in front of conference banner' },
+    { src: "./photos/faculty team workshop presentation.jpg", alt: 'Faculty team workshop presentation' },
+    { src: "./photos/group_photo_hotel.jpg", alt: 'At hotel cafeteria' },
+    { src: "./photos/anca at front desk.jpg", alt: 'Students and faculty at front desk' },
+    { src: "./photos/Anh award photo_COVER.jpg", alt: 'Anh Tang receiving the award' },
+    
+    { src: "./photos/sanaa volunteering at front desk.jpg", alt: 'Sanaa volunteering at thefront desk' },
+    { src: "./photos/at universal orlando group.jpg", alt: 'At Universal Orlando' },
+    ]
+imageEvent: "./photos/groupPhoto_small_portrait.jpg"
 ---
 import { Image } from "astro:assets";
 
@@ -26,13 +31,18 @@ import Clip from '/src/components/astro/Clip.astro';
 import ProjectCard from '/src/components/ProjectCard.vue';
 import projectIds from '/src/components/astro/ProjectIds.js';
 
-import site_Spring25Cover from "./photos/Anh award photo_COVER.jpg";
+import site_group from "./photos/groupPhoto_small.jpg";
+import site_Anh from "./photos/Anh award photo_COVER.jpg";
 
 # TAP Students and Faculty Presented Research at SITE Conference
-<br>
-<Photo src={site_Spring25Cover.src} caption="Anh Tang won best poster award at SITE Conference"/> 
-</br>
-<p></p>
+
+<Photo src={site_group.src} caption="Students and faculty in front of conference banner"/> 
+
+TAP students and faculty participated at the 37th annual conference of the [Society for Information Technology and Teacher Education](https://site.aace.org/conf/) (SITE 2025) in Orlando, Florida. 
+The conference was held from March 17-21, 2025. Research projects of five TAP student teams were presented as posters and a faculty team presented 
+a workshop on "Assessing Creativity in a Technology Outreach Service-Learning Course".
+
+<Photo src={site_Anh.src} caption="TAP student Anh Tang won the best poster award"/> 
 
 
 

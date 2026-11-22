@@ -1,0 +1,14 @@
+---
+import TAPDefaultLayout from "../layouts/default.astro";
+import Crumbs from '../components/Crumbs.vue';
+import Search from '../components/Search.vue';
+import { getCollection } from 'astro:content';
+
+const awards = (await getCollection('awards')).sort(
+  (a, b) => b.data.eventDate - a.data.eventDate
+);
+---
+<TAPDefaultLayout title="All TAP Awards">
+  <Crumbs pageType="awards" pageUrl="/awards" />
+  <Search client:load eventsList={awards} context="awards" />
+</TAPDefaultLayout>
