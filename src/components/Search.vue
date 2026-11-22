@@ -9,6 +9,7 @@ import { Button } from 'agnostic-vue';
 
 
 // Component Imports
+import AwardCard from "./AwardCard.vue";
 import EventCard from "./EventCard.vue";
 import PublicationCard from "./PublicationCard.vue";
 import Pagination from "./Pagination.vue";
@@ -61,7 +62,7 @@ function matches(item) {
   if (semester.value != 'Any' && !semester.value.includes(item.data.semester)) {
     return false;
   }
-  if (props.contentType === 'events' && tech.value != 'Any' && 
+  if (props.context === 'events' && tech.value != 'Any' && 
       !tech.value.some(t => item.data.techs?.includes(t))) {
     return false;
   }
@@ -77,13 +78,19 @@ function matches(item) {
   }
 
   // Content type specific search fields
-  if (props.contentType === 'events') {
+  if (props.context === 'events') {
     return item.data.techs?.some(t => t.toLowerCase().includes(searchText)) ||
            item.data.instructors?.some(i => i.toLowerCase().includes(searchText)) ||
            item.data.students?.some(s => s.toLowerCase().includes(searchText)) ||
            item.data.curator?.some(c => c.toLowerCase().includes(searchText));
-  } else { // publications
+  } else if (props.context === 'publications' || props.context === 'slides') {
     return item.data.abstract?.toLowerCase().includes(searchText) ||
+           item.data.students?.some(s => s.toLowerCase().includes(searchText)) ||
+           item.data.instructors?.some(i => i.toLowerCase().includes(searchText)) ||
+           item.data.projects?.some(p => p.toLowerCase().includes(searchText));
+  } else {
+    return item.data.desc?.toLowerCase().includes(searchText) ||
+           item.data.tags?.some(t => t.toLowerCase().includes(searchText)) ||
            item.data.students?.some(s => s.toLowerCase().includes(searchText)) ||
            item.data.instructors?.some(i => i.toLowerCase().includes(searchText)) ||
            item.data.projects?.some(p => p.toLowerCase().includes(searchText));
@@ -117,7 +124,12 @@ watch([filteredItems, pageSize], () => {
 });
 
 const base = import.meta.env.BASE_URL;
-const contextLabel = computed(() => props.context === 'events' ? 'Events' : 'Publications');
+const contextLabel = computed(() => {
+  if (props.context === 'events') return 'Events';
+  if (props.context === 'publications') return 'Publications';
+  if (props.context === 'slides') return 'Presentations';
+  return 'Awards';
+});
 </script>
 
 <template>
@@ -173,7 +185,8 @@ const contextLabel = computed(() => props.context === 'events' ? 'Events' : 'Pub
     <section class="mbe40 event-cards-flex flex flex-row flex-grow-1 flex-shrink-1 flex-wrap flex-fill">
         <template v-for="item in paginatedItems" :key="item.data.id">
             <EventCard v-if="context === 'events'" :item = "item" />
-            <PublicationCard  v-else :item="item"/>
+            <PublicationCard  v-else-if="context === 'publications'" :item="item"/> 
+            <AwardCard v-else-if="context === 'awards'" :item="item" />
         </template>
     </section>
 
@@ -202,4 +215,4 @@ const contextLabel = computed(() => props.context === 'events' ? 'Events' : 'Pub
         padding: 1em;
         flex: 1;
     }
-</style>  
+</style>

@@ -12,7 +12,7 @@ const slides = (await getCollection('slides')).sort((p1,p2) => p2.data.postDate 
 
     <Crumbs pageType="slides" pageUrl="/slides" />
 
-    <Search client:load eventsList={slides}/>
+    <Search client:load eventsList={slides} context="slides" />
 
 
 </TAPDefaultLayout>

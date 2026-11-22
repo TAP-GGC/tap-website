@@ -5,6 +5,43 @@ import { withCtx } from 'vue';
 // Import our own collections
 import { getStudentIds } from "../components/astro/StudentIds";
 
+// Shared cross-collection ID validators
+async function isValidStudentId(studentId: string) {
+  const students = await getStudentIds();
+  return studentId in students;
+}
+
+async function isValidInstructorId(instructorId: string) {
+  const instructors = await getCollection('instructors');
+  const normalizedId = instructorId.toLowerCase();
+  return instructors.some(instructor =>
+    instructor.data.id?.toLowerCase() === normalizedId
+  );
+}
+
+async function isValidProjectId(projectId: string) {
+  const projects = await getCollection('projects');
+  const normalizedId = projectId.toLowerCase();
+  return projects.some(project =>
+    project.data.id.toLowerCase() === normalizedId
+  );
+}
+
+const studentIdSchema = z.string().refine(
+  isValidStudentId,
+  (studentId) => ({ message: `Student '${studentId}' not found.` })
+);
+
+const instructorIdSchema = z.string().refine(
+  isValidInstructorId,
+  (instructorId) => ({ message: `Faculty '${instructorId}' not found.` })
+);
+
+const projectIdSchema = z.string().refine(
+  isValidProjectId,
+  (projectId) => ({ message: `Project ID '${projectId}' not found.` })
+);
+
 // 2. Define your collection(s)
 const eventCollection = defineCollection({
   type: 'content', // v2.5.0 and later
@@ -15,10 +52,10 @@ const eventCollection = defineCollection({
     techs: z.array(z.string()).optional(),
     semester: z.string(),
     year: z.number(),
-    eventDate: z.string().datetime().transform((str) => new Date(str)),
-    students: z.array(z.string()).optional(),
-    instructors: z.array(z.string()).optional(),
-    projects: z.array(z.string()).optional(),
+    eventDate: z.date(),
+    students: z.array(studentIdSchema).optional(),
+    instructors: z.array(instructorIdSchema).optional(),
+    projects: z.array(projectIdSchema).optional(),
     awards: z.array(z.string()).optional(),
     desc: z.string().optional().nullable(),
     imageEvent:  image().refine(eventPhotoValidator, eventPhotoValidatorMsg).optional(),
@@ -31,9 +68,9 @@ const eventCollection = defineCollection({
   }),
 });
 const photoAspect = (img) => img.width / img.height;
-const eventPhotoValidator = (img) => img.width && Math.abs(photoAspect(img) - 0.75) < 0.2;
+const eventPhotoValidator = (img) => img.width && Math.abs(photoAspect(img) - 0.75) < 0.3;
 const eventPhotoValidatorMsg = (img) => ({
-  message: `Event photo image must be a 2x3 (0.75) portrait aspect ratio but given image ratio is ${Math.round(photoAspect(img) * 100) / 100}, which is more than 20% different!\n${img.src} is ${img.width}x${img.height}.`,
+  message: `Event photo image must be a 2x3 (0.75) portrait aspect ratio but given image ratio is ${Math.round(photoAspect(img) * 100) / 100}, which is more than 30% different!\n${img.src} is ${img.width}x${img.height}.`,
   path: [ "imageEvent" ]
 });
 
@@ -97,13 +134,7 @@ const studentCollection = defineCollection({
     desc: z.string().optional().nullable(),
     graduationYear: z.string().nullable(),
     relatedProjectIds: z.array(z.string()).optional().nullable(),
-    projects: z.array(z.string().refine(
-      async (projectId) => {
-        const projects = await getCollection('projects');
-
-        return projects.some(project => project.data.id.toLowerCase() == projectId)        
-      },
-      (projectId) => ({ message: `Project ID '${projectId}' not found.` }))).optional().nullable(),
+    projects: z.array(projectIdSchema).optional().nullable(),
   }),
 });
 
@@ -122,13 +153,7 @@ const facultyCollection = defineCollection({
     github: z.string().url().optional().nullable(),
     image: image().refine(imageLogoValidator, imageLogoValidatorMsg).optional().nullable(),
     desc: z.string().optional().nullable(),
-    projects: z.array(z.string().refine(
-      async (projectId) => {
-        const projects = await getCollection('projects');
-
-        return projects.some(project => project.data.id.toLowerCase() == projectId)        
-      },
-      (projectId) => ({ message: `Project ID '${projectId}' not found.` }))).optional().nullable(),
+    projects: z.array(projectIdSchema).optional().nullable(),
   }),
 });
 
@@ -152,34 +177,13 @@ const awardCollection = defineCollection({
     tags: z.array(z.string()),
     semester: z.string(),
     year: z.number(),
-    postDate: z.date().default(() => new Date()),
-    updateDate: z.date().optional(),
+    eventDate: z.date().default(() => new Date()),
+    desc: z.string().optional().nullable(),
     events: z.array(z.string()).optional(),
-    students: z.array(z.string().refine(
-      async (studentId) =>{
-        //const students = await getCollection('students');
-        const students = await getStudentIds();        
-
-        return studentId in students;
-      },
-      (studentId) => ({message: `Student '${studentId}' not found.`})
-    )).optional(), /* do a refine check like in projects */
-    instructors: z.array(z.string().refine(
-      async (facultyId) =>{
-        const instructors = await getCollection('instructors');
-
-        return instructors.some(instructor => instructor.data.id.toLowerCase() == facultyId)
-      },
-      (facultyId) => ({message: `Faculty '${facultyId}' not found.`})
-    )).optional(),
-    projects: z.array(z.string().refine(
-      async (projectId) => {
-        const projects = await getCollection('projects');
-
-        return projects.some(project => project.data.id.toLowerCase() == projectId)        
-      },
-      (projectId) => ({ message: `Project ID '${projectId}' not found.` }))).optional(),
-    image: z.string().optional(),
+    students: z.array(studentIdSchema).optional(),
+    instructors: z.array(instructorIdSchema).optional(),
+    projects: z.array(projectIdSchema).optional(),
+    image: image().refine(eventPhotoValidator, eventPhotoValidatorMsg).optional(),
     images: z.array(z.object({
       src: image().refine((img) => img.width <= 1500, {
           message: "Image too large! Convert images to be less than 1500 pixels wide.",
@@ -199,9 +203,9 @@ const papersCollection = defineCollection({
     updateDate: z.date().optional(),
     events: z.array(z.string()).optional(),
     awards: z.array(z.string()).optional(),
-    students: z.array(z.string()),
-    instructors: z.array(z.string()),
-    projects: z.array(z.string()),
+    students: z.array(studentIdSchema),
+    instructors: z.array(instructorIdSchema),
+    projects: z.array(projectIdSchema),
     image: image().refine((img) => img.width <= 150, {
       message: "Image too large! Convert images to be less than 150 pixels wide.",
     }).optional(),
@@ -219,9 +223,9 @@ const slidesCollection = defineCollection({
     postDate: z.date(),
     events: z.array(z.string()).optional(),
     awards: z.array(z.string()).optional(),
-    students: z.array(z.string()),
-    instructors: z.array(z.string()),
-    projects: z.array(z.string()),
+    students: z.array(studentIdSchema).optional(),
+    instructors: z.array(instructorIdSchema).optional(),
+    projects: z.array(projectIdSchema).optional(),
     image: image().refine((img) => img.width <= 150, {
       message: "Image too large! Convert images to be less than 150 pixels wide.",
     }).optional(),
