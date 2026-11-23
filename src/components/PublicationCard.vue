@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, onMounted } from "vue";
+import { computed, ref, watchEffect } from "vue";
 // Components CSS
 import "agnostic-vue/dist/common.min.css";
 import "agnostic-vue/dist/index.css";
@@ -36,6 +36,11 @@ const openPaper = () => {
     window.open(publicationProp.item.data.paperLink, '_blank');
   }
 };
+
+const studentIds = publicationProp.item?.data?.students.concat(publicationProp.item?.data?.instructors || []);
+const studentNames = await Promise.all(studentIds.map((studentId) => formatIDtoName(studentId)));
+const studentMap = new Map(studentIds.entries().map(([index, studentId]) => [studentId, studentNames[index]]));
+
 </script>
 
 <template>
@@ -61,8 +66,8 @@ const openPaper = () => {
       </p>
 
       <div class="tag-container">
-        <a v-for="(student, index) in item.data.students" :key="index" :href="`/students/${student}`" class="tag"> {{ formatIDtoName(student) }}</a>
-        <a v-for="(instructor, index) in item.data.instructors" :key="index" :href="`/instructors/${instructor}`" class="tag"> {{ formatIDtoName(instructor) }}</a>
+        <a v-for="(student, index) in item.data.students" :key="index" :href="`/students/${student}`" class="tag"> {{ studentMap.get(student) }}</a>
+        <a v-for="(instructor, index) in item.data.instructors" :key="index" :href="`/instructors/${instructor}`" class="tag"> {{ studentMap.get(instructor) }}</a>
 
       </div>
     </div>
@@ -115,28 +120,6 @@ const openPaper = () => {
 
 .publicationCard h4 {
     margin-bottom: 0.5em;
-}
-
-/* Tag Styling */
-.tag-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5em;
-}
-
-.tag {
-  display: inline-block;
-  padding: 0.25em 0.75em;
-  font-size: 0.875em;
-  color: var(--agnostic-btn-primary-color, var(--agnostic-light));
-  border-radius: var(--agnostic-btn-radius, var(--agnostic-radius, .25rem));
-  transition: background-color 0.3s ease, color 0.3s ease;
-  text-decoration: none;
-}
-
-/* Save this until we can have links for each tag */
-.tag:hover {
-  color: var(--agnostic-btn-hover-color, white); 
 }
 
 /* Ensure the card link covers the entire card and removes default anchor styling */

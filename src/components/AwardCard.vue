@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from "vue";
+import { computed, ref, watchEffect } from "vue";
 import "agnostic-vue/dist/common.min.css";
 import "agnostic-vue/dist/index.css";
 import { Card } from "agnostic-vue";
@@ -34,6 +34,11 @@ const dateOptions = {
   month: 'short',
   day: 'numeric'
 };
+
+const studentIds = awardProp.item?.data?.students;
+const studentNames = await Promise.all(studentIds.map((studentId) => formatIDtoName(studentId)));
+const studentMap = new Map(studentIds.entries().map(([index, studentId]) => [studentId, studentNames[index]]));
+
 </script>
 
 <template>
@@ -58,7 +63,7 @@ const dateOptions = {
           :key="student"
           :href="`${base}/students/${student}`"
           class="tag"
-        >{{ formatIDtoName(student) }}</a>
+        >{{ studentMap.get(student) }}</a>
       </div>
     </div>
   </Card>
@@ -107,25 +112,6 @@ const dateOptions = {
 
 .awardCard h4 {
   margin-bottom: 0.5em;
-}
-
-.tag-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5em;
-}
-
-.tag {
-  display: inline-block;
-  padding: 0.25em 0.75em;
-  font-size: 0.875em;
-  color: var(--agnostic-btn-primary-color, var(--agnostic-light));
-  border-radius: var(--agnostic-btn-radius, var(--agnostic-radius, .25rem));
-  text-decoration: none;
-}
-
-.tag:hover {
-  color: var(--agnostic-btn-hover-color, white);
 }
 
 .awardCard .card-link {

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, onMounted } from "vue";
+import { computed, ref, watchEffect } from "vue";
 // Components CSS
 import "agnostic-vue/dist/common.min.css";
 import "agnostic-vue/dist/index.css";
@@ -17,20 +17,6 @@ const base = import.meta.env.BASE_URL == '/' ? '' : import.meta.env.BASE_URL;
 const eventProp = defineProps({
         item: Object
     });
-
-    // Dark mode detection
-// const isDarkMode = ref(false);
-
-// onMounted(() => {
-//   // Check for dark mode preference
-//   isDarkMode.value = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
-//   // Listen for changes
-//   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-//     isDarkMode.value = e.matches;
-//   });
-// });
-
 
 // Event Photos
 const eventPhoto = computed(() => {
@@ -58,6 +44,11 @@ const date_options = {
   month: 'short',
   day: 'numeric',
 };
+
+const studentIds = eventProp.item?.data?.students;
+const studentNames = await Promise.all(studentIds.map((studentId) => formatIDtoName(studentId)));
+const studentMap = new Map(studentIds.entries().map(([index, studentId]) => [studentId, studentNames[index]]));
+
 </script>
 
 <template>
@@ -82,7 +73,7 @@ const date_options = {
 
             <!-- Display students as Tags -->
             <div class="tag-container">
-              <a v-for="(student, index) in item.data.students" :key="index" :href="`/students/${student}`"> {{ formatIDtoName(student) }}</a>
+              <a v-for="(student, index) in item.data.students" :key="index" :href="`/students/${student}`" class="tag"> {{ studentMap.get(student) }}</a>
 
             </div>
       </div>
@@ -137,30 +128,6 @@ const date_options = {
 
 .eventCard h4 {
     margin-bottom: 0.5em;
-}
-
-/* Tag Styling */
-.tag-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5em;
-}
-
-.tag {
-  display: inline-block;
-  padding: 0.25em 0.75em;
-  font-size: 0.875em;
-  color: var(--agnostic-btn-primary-color, var(--agnostic-light));
-  border-radius: var(--agnostic-btn-radius, var(--agnostic-radius, .25rem));
-  transition: background-color 0.3s ease, color 0.3s ease;
-  text-decoration: none;
-}
-
-/* Save this until we can have links for each tag */
-.tag:hover {
-  /* background-color: var(--agnostic-btn-primary-color); */
-  color: var(--agnostic-btn-hover-color, white); /* Change color on hover */
-
 }
 
 /* Ensure the card link covers the entire card and removes default anchor styling */
