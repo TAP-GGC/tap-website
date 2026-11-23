@@ -36,14 +36,11 @@ const openPaper = () => {
     window.open(publicationProp.item.data.paperLink, '_blank');
   }
 };
-const students = computed(() => publicationProp.item?.data?.students || []);
-const names = ref({});
 
-watchEffect(async () => {  
-  for (const studentId of students.value.concat(publicationProp.item?.data?.instructors || [])) {
-    names.value[studentId] = await formatIDtoName(studentId);
-  }
-});
+const studentIds = publicationProp.item?.data?.students.concat(publicationProp.item?.data?.instructors || []);
+const studentNames = await Promise.all(studentIds.map((studentId) => formatIDtoName(studentId)));
+const studentMap = new Map(studentIds.entries().map(([index, studentId]) => [studentId, studentNames[index]]));
+
 </script>
 
 <template>
@@ -69,8 +66,8 @@ watchEffect(async () => {
       </p>
 
       <div class="tag-container">
-        <a v-for="(student, index) in item.data.students" :key="index" :href="`/students/${student}`" class="tag"> {{ names[student] }}</a>
-        <a v-for="(instructor, index) in item.data.instructors" :key="index" :href="`/instructors/${instructor}`" class="tag"> {{ names[instructor] }}</a>
+        <a v-for="(student, index) in item.data.students" :key="index" :href="`/students/${student}`" class="tag"> {{ studentMap.get(student) }}</a>
+        <a v-for="(instructor, index) in item.data.instructors" :key="index" :href="`/instructors/${instructor}`" class="tag"> {{ studentMap.get(instructor) }}</a>
 
       </div>
     </div>

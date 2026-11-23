@@ -45,15 +45,10 @@ const date_options = {
   day: 'numeric',
 };
 
-const students = computed(() => eventProp.item?.data?.students || []);
-const studentNames = ref({});
+const studentIds = eventProp.item?.data?.students;
+const studentNames = await Promise.all(studentIds.map((studentId) => formatIDtoName(studentId)));
+const studentMap = new Map(studentIds.entries().map(([index, studentId]) => [studentId, studentNames[index]]));
 
-watchEffect(async () => {  
-  for (const studentId of students.value) {
-    studentNames.value[studentId] = await formatIDtoName(studentId);
-  }
-  console.log(studentNames.value);
-});
 </script>
 
 <template>
@@ -78,7 +73,7 @@ watchEffect(async () => {
 
             <!-- Display students as Tags -->
             <div class="tag-container">
-              <a v-for="(student, index) in item.data.students" :key="index" :href="`/students/${student}`" class="tag"> {{ studentNames[student] }}</a>
+              <a v-for="(student, index) in item.data.students" :key="index" :href="`/students/${student}`" class="tag"> {{ studentMap.get(student) }}</a>
 
             </div>
       </div>

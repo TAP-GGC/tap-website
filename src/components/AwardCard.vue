@@ -35,15 +35,10 @@ const dateOptions = {
   day: 'numeric'
 };
 
-const students = computed(() => awardProp.item?.data?.students || []);
-const studentNames = ref({});
+const studentIds = awardProp.item?.data?.students;
+const studentNames = await Promise.all(studentIds.map((studentId) => formatIDtoName(studentId)));
+const studentMap = new Map(studentIds.entries().map(([index, studentId]) => [studentId, studentNames[index]]));
 
-watchEffect(async () => {  
-  for (const studentId of students.value) {
-    studentNames.value[studentId] = await formatIDtoName(studentId);
-  }
-  console.log(studentNames.value);
-});
 </script>
 
 <template>
@@ -68,7 +63,7 @@ watchEffect(async () => {
           :key="student"
           :href="`${base}/students/${student}`"
           class="tag"
-        >{{ studentNames[student] }}</a>
+        >{{ studentMap.get(student) }}</a>
       </div>
     </div>
   </Card>
