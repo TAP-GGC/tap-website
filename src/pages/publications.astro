@@ -2,17 +2,28 @@
 import TAPDefaultLayout from "../layouts/default.astro";
 import TAPCalendar from "../components/TAPCalendar.vue";
 import Crumbs from '../components/Crumbs.vue';
-import Search from "../components/Search.vue"
-
+import Search from "../components/Search.vue";
+import { getStudentIds } from "../components/astro/StudentIds";
+import { getFacultyIds } from "../components/astro/FacultyIds";
+import { formatIDtoName } from "../components/astro/formatNames";
 import { getCollection } from 'astro:content';
 
 const papers = (await getCollection('publications')).sort((p1,p2) => p2.data.postDate - p1.data.postDate);
+
+// Get both faculty and student IDs
+const facultyIds = await getFacultyIds();
+const studentIds = await getStudentIds();
+// Combine to make an object with values as promises, then resolve all
+const allIds = Object.keys(studentIds).concat(Object.keys(facultyIds));
+const names = await Promise.all(allIds.map((id) => formatIDtoName({ id, studentIds, facultyIds })));
+const namesMap = Object.fromEntries(names.map((name, i) => [allIds[i], name]));
+
 ---
 <TAPDefaultLayout title="All TAP publications">
 
     <Crumbs pageType="publications" pageUrl="/publications" />
 
-    <Search client:load eventsList={papers} context="publications" />
+    <Search client:load eventsList={papers} context="publications" namesMap={namesMap} />
 
 
 </TAPDefaultLayout>

@@ -4,11 +4,23 @@ import Crumbs from '../components/Crumbs.vue';
 import Search from '../components/Search.vue';
 import { getCollection } from 'astro:content';
 
+import { getStudentIds } from "../components/astro/StudentIds";
+import { getFacultyIds } from "../components/astro/FacultyIds";
+import { formatIDtoName } from "../components/astro/formatNames";
+
 const awards = (await getCollection('awards')).sort(
   (a, b) => b.data.eventDate - a.data.eventDate
 );
+
+// Get both faculty and student IDs
+const facultyIds = await getFacultyIds();
+const studentIds = await getStudentIds();
+// Combine to make an object with values as promises, then resolve all
+const allIds = Object.keys(studentIds).concat(Object.keys(facultyIds));
+const names = await Promise.all(allIds.map((id) => formatIDtoName({ id, studentIds, facultyIds })));
+const namesMap = Object.fromEntries(names.map((name, i) => [allIds[i], name]));
 ---
 <TAPDefaultLayout title="All TAP Awards">
   <Crumbs pageType="awards" pageUrl="/awards" />
-  <Search client:load eventsList={awards} context="awards" />
+  <Search client:load eventsList={awards} context="awards" namesMap={namesMap} />
 </TAPDefaultLayout>

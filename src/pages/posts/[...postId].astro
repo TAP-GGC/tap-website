@@ -35,12 +35,14 @@ import projectIds from '../../components/astro/ProjectIds';
 import ProjectCard from '../../components/ProjectCard.vue';
 //faculty
 import FacultyCard from '../../components/FacultyCard.vue';
-import facultyIds from '../../components/astro/FacultyIds';
+import { getFacultyIds } from "../../components/astro/FacultyIds";
+
 //students
 import { getStudentIds } from '../../components/astro/StudentIds';
 import StudentCard from '../../components/StudentCard.vue';
 import AwardCard from '../../components/AwardCard.vue';
 import awardIds from '../../components/astro/AwardIds';
+import { formatIDtoName } from '../../components/astro/formatNames';
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -54,10 +56,16 @@ const { entry } = Astro.props;
 const { postId } = Astro.params;
 const { Content } = await entry.render();
 const studentIds = await getStudentIds();
+const facultyIds = await getFacultyIds();
 
 //BreadCrumb variables
 const postName = entry.data.title;
 const postTag = entry.data.tags;
+
+// Combine to make an object with values as promises, then resolve all
+const allIds = Object.keys(studentIds).concat(Object.keys(facultyIds));
+const names = await Promise.all(allIds.map((id) => formatIDtoName({ id, studentIds, facultyIds })));
+const namesMap = Object.fromEntries(names.map((name, i) => [allIds[i], name]));
 
 // Page title
 let title = `${entry.data.title} (${entry.data.eventDate.toDateString()}) - GGC Technology Ambassadors Program`;
@@ -73,7 +81,7 @@ let title = `${entry.data.title} (${entry.data.eventDate.toDateString()}) - GGC 
       <h2>Awards</h2>
       <section class="sectionCards">
         {entry.data.awards.map((project_id) => (      
-          <AwardCard item={awardIds[project_id]} />
+          <AwardCard item={awardIds[project_id]} namesMap={namesMap} />
         ))}
       </section>
     )}

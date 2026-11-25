@@ -6,8 +6,6 @@ import "agnostic-vue/dist/common.min.css";
 import { Input, Card, Select } from "agnostic-vue";
 import { Button } from 'agnostic-vue';
 
-
-
 // Component Imports
 import AwardCard from "./AwardCard.vue";
 import EventCard from "./EventCard.vue";
@@ -18,7 +16,8 @@ import Pagination from "./Pagination.vue";
 const props = defineProps({
         eventsList: Object,
         filter: Object,
-        context: String
+        context: String,
+        namesMap: Object
     });
 const content = props.eventsList;
 const search_text = ref("");
@@ -184,9 +183,9 @@ const contextLabel = computed(() => {
 
     <section class="mbe40 event-cards-flex flex flex-row flex-grow-1 flex-shrink-1 flex-wrap flex-fill">
         <template v-for="item in paginatedItems" :key="item.data.id">
-            <EventCard v-if="context === 'events'" :item = "item" />
-            <PublicationCard  v-else-if="context === 'publications'" :item="item"/> 
-            <AwardCard v-else-if="context === 'awards'" :item="item" />
+            <EventCard v-if="context === 'events'" :item = "item" :namesMap="namesMap"/>
+            <PublicationCard  v-else-if="context === 'publications'" :item="item" :namesMap="namesMap"/> 
+            <AwardCard v-else-if="context === 'awards'" :item="item" :namesMap="namesMap"/>
         </template>
     </section>
 

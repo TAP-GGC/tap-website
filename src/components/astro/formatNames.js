@@ -1,8 +1,13 @@
-import facultyIds from "./FacultyIds";
+import { getFacultyIds } from "./FacultyIds";
 import { getStudentIds } from "./StudentIds";
 
-export async function formatIDtoName(id) {
-  const studentIds = await getStudentIds();
+const required = (name) => { throw new Error(`Missing parameter: ${name}`); };
+
+export async function formatIDtoName({id = required('id'), studentIds = undefined, facultyIds = undefined}) {
+  if (!studentIds) 
+    studentIds = await getStudentIds();
+  if (!facultyIds) 
+    facultyIds = await getFacultyIds();
 
   if (id in studentIds){
     return studentIds[id].data.name;

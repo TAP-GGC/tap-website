@@ -166,13 +166,14 @@ import Gallery from '../../components/astro/Gallery.astro';
 import VideoCarousel from '../../components/vue/VideoCarousel.vue';
 import Students from '../students.astro';
 import { getStudentIds } from '../../components/astro/StudentIds';
-import facultyIds from '../../components/astro/FacultyIds';
+import { getFacultyIds } from '../../components/astro/FacultyIds';
 import { formatIDtoName } from '../../components/astro/formatNames';
 import TechCard from '../../components/TechCard.vue';
 import ProjectCard from '../../components/ProjectCard.vue';
 import projectIds from '../../components/astro/ProjectIds';
 
 const studentIds = await getStudentIds();
+const facultyIds = await getFacultyIds();
 
 // Logos
 let imageLogoLight = project.data.imageLogoLight?.src;

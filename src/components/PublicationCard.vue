@@ -10,7 +10,8 @@ import { formatIDtoName } from './astro/formatNames';
 const base = import.meta.env.BASE_URL == '/' ? '' : import.meta.env.BASE_URL;
 
 const publicationProp = defineProps({
-        item: Object
+        item: Object,
+        namesMap: Object
     });
 
 // publication Photos
@@ -36,11 +37,6 @@ const openPaper = () => {
     window.open(publicationProp.item.data.paperLink, '_blank');
   }
 };
-
-const studentIds = publicationProp.item?.data?.students.concat(publicationProp.item?.data?.instructors || []);
-const studentNames = await Promise.all(studentIds.map((studentId) => formatIDtoName(studentId)));
-const studentMap = new Map(studentIds.entries().map(([index, studentId]) => [studentId, studentNames[index]]));
-
 </script>
 
 <template>
@@ -66,8 +62,8 @@ const studentMap = new Map(studentIds.entries().map(([index, studentId]) => [stu
       </p>
 
       <div class="tag-container">
-        <a v-for="(student, index) in item.data.students" :key="index" :href="`/students/${student}`" class="tag"> {{ studentMap.get(student) }}</a>
-        <a v-for="(instructor, index) in item.data.instructors" :key="index" :href="`/instructors/${instructor}`" class="tag"> {{ studentMap.get(instructor) }}</a>
+        <a v-for="(student, index) in item.data.students" :key="index" :href="`/students/${student}`" class="tag"> {{ namesMap[student] }}</a>
+        <a v-for="(instructor, index) in item.data.instructors" :key="index" :href="`/instructors/${instructor}`" class="tag"> {{ namesMap[instructor] }}</a>
 
       </div>
     </div>

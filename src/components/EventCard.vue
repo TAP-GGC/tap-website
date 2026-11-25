@@ -15,7 +15,8 @@ import placeholderDark  from "../images/tap-news-placeholder-dark.png";
 const base = import.meta.env.BASE_URL == '/' ? '' : import.meta.env.BASE_URL;
 
 const eventProp = defineProps({
-        item: Object
+        item: Object,
+        namesMap: Object
     });
 
 // Event Photos
@@ -44,11 +45,6 @@ const date_options = {
   month: 'short',
   day: 'numeric',
 };
-
-const studentIds = eventProp.item?.data?.students;
-const studentNames = await Promise.all(studentIds.map((studentId) => formatIDtoName(studentId)));
-const studentMap = new Map(studentIds.entries().map(([index, studentId]) => [studentId, studentNames[index]]));
-
 </script>
 
 <template>
@@ -73,7 +69,7 @@ const studentMap = new Map(studentIds.entries().map(([index, studentId]) => [stu
 
             <!-- Display students as Tags -->
             <div class="tag-container">
-              <a v-for="(student, index) in item.data.students" :key="index" :href="`/students/${student}`" class="tag"> {{ studentMap.get(student) }}</a>
+              <a v-for="(student, index) in item.data.students" :key="index" :href="`/students/${student}`" class="tag"> {{ namesMap[student] || "not found" }}</a>
 
             </div>
       </div>

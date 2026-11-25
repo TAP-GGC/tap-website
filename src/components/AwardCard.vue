@@ -10,7 +10,8 @@ import placeholderDark from "../images/tap-news-placeholder-dark.png";
 const base = import.meta.env.BASE_URL == '/' ? '' : import.meta.env.BASE_URL;
 
 const awardProp = defineProps({
-  item: Object
+  item: Object,
+  namesMap: Object
 });
 
 const awardPhoto = computed(() => {
@@ -34,11 +35,6 @@ const dateOptions = {
   month: 'short',
   day: 'numeric'
 };
-
-const studentIds = awardProp.item?.data?.students;
-const studentNames = await Promise.all(studentIds.map((studentId) => formatIDtoName(studentId)));
-const studentMap = new Map(studentIds.entries().map(([index, studentId]) => [studentId, studentNames[index]]));
-
 </script>
 
 <template>
@@ -63,7 +59,7 @@ const studentMap = new Map(studentIds.entries().map(([index, studentId]) => [stu
           :key="student"
           :href="`${base}/students/${student}`"
           class="tag"
-        >{{ studentMap.get(student) }}</a>
+        >{{ namesMap[student] }}</a>
       </div>
     </div>
   </Card>
