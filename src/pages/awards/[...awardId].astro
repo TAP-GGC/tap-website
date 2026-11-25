@@ -41,6 +41,8 @@ import { getFacultyIds } from "../../components/astro/FacultyIds";
 import { getStudentIds } from '../../components/astro/StudentIds';
 import StudentCard from '../../components/StudentCard.vue';
 
+import { formatIDtoName } from "../../components/astro/formatNames";
+
 import EventCard from '../../components/EventCard.vue';
 import eventIds from '../../components/astro/EventIds';
 
@@ -58,6 +60,11 @@ const { awardId } = Astro.params;
 const { Content } = await entry.render();
 const studentIds = await getStudentIds();
 const facultyIds = await getFacultyIds();
+
+// Combine to make an object with values as promises, then resolve all
+const allIds = Object.keys(studentIds).concat(Object.keys(facultyIds));
+const names = await Promise.all(allIds.map((id) => formatIDtoName({ id, studentIds, facultyIds })));
+const namesMap = Object.fromEntries(names.map((name, i) => [allIds[i], name]));
 
 //BreadCrumb variables
 const awardName = entry.data.title;
@@ -105,7 +112,7 @@ let title = `${entry.data.title} (${entry.data.eventDate.toDateString()})`;
       <h3>Read More:</h3>
       <section class="sectionCards">
         {entry.data.events.map((event) =>(
-          <EventCard item={eventIds[event]} />
+          <EventCard item={eventIds[event]} namesMap={namesMap}/>
         ))}
       </section>
     )}
