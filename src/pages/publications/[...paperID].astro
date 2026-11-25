@@ -26,7 +26,7 @@ import projectIds from '../../components/astro/ProjectIds';
 import ProjectCard from '../../components/ProjectCard.vue';
 //faculty
 import FacultyCard from '../../components/FacultyCard.vue';
-import facultyIds from '../../components/astro/FacultyIds';
+import { getFacultyIds } from '../../components/astro/FacultyIds';
 //students
 import { getStudentIds } from '../../components/astro/StudentIds';
 import StudentCard from '../../components/StudentCard.vue';
@@ -44,6 +44,7 @@ const { entry } = Astro.props;
 const { paperID } = Astro.params;
 const { Content } = await entry.render();
 const studentIds = await getStudentIds();
+const facultyIds = await getFacultyIds();
 
 //BreadCrumb variables
 const publicationName = entry.data.title;

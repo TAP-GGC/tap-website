@@ -22,13 +22,26 @@ import Search from "../components/Search.vue"
 import { Input } from "agnostic-vue";
 import Crumbs from '../components/Crumbs.vue';
 import { getCollection } from 'astro:content';
+
+import { getStudentIds } from "../components/astro/StudentIds";
+import { getFacultyIds } from "../components/astro/FacultyIds";
+import { formatIDtoName } from "../components/astro/formatNames";
+
 const events = (await getCollection('events')).sort((e1, e2) => e2.data.eventDate - e1.data.eventDate);  //list of news/events in most recent order
+
+// Get both faculty and student IDs
+const facultyIds = await getFacultyIds();
+const studentIds = await getStudentIds();
+// Combine to make an object with values as promises, then resolve all
+const allIds = Object.keys(studentIds).concat(Object.keys(facultyIds));
+const names = await Promise.all(allIds.map((id) => formatIDtoName({ id, studentIds, facultyIds })));
+const namesMap = Object.fromEntries(names.map((name, i) => [allIds[i], name]));
 ---
 <TAPDefaultLayout title="All News & Events">
 
     <Crumbs pageType="posts" pageUrl="/posts" />
 
-    <Search client:load eventsList={events} context='events'/>
+    <Search client:load eventsList={events} context='events' namesMap={namesMap}/>
 
 
 </TAPDefaultLayout>
